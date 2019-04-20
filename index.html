@@ -14,7 +14,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang>
+<html class="theme-next muse use-motion" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -97,12 +97,12 @@
 
 
   <meta property="og:type" content="website">
-<meta property="og:title" content="A little and little student">
+<meta property="og:title" content="Snatsu">
 <meta property="og:url" content="http://yoursite.com/index.html">
-<meta property="og:site_name" content="A little and little student">
-<meta property="og:locale" content="default">
+<meta property="og:site_name" content="Snatsu">
+<meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="A little and little student">
+<meta name="twitter:title" content="Snatsu">
 
 
 
@@ -120,7 +120,7 @@
   };
 </script>
 
-  <title>A little and little student</title>
+  <title>Snatsu</title>
   
 
 
@@ -161,7 +161,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -180,7 +180,7 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">A little and little student</span>
+        <span class="site-title">Snatsu</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -189,7 +189,7 @@
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="Navigationsleiste an/ausschalten">
+    <button aria-label="切换导航栏">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -217,7 +217,7 @@
 
     
 
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Startseite</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
 
   </li>
         
@@ -234,7 +234,24 @@
 
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archiv</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-aboutme">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/AboutMe" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>关于</a>
 
   </li>
 
@@ -286,6 +303,162 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/20/moctf-wp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="snatsu">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Snatsu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/20/moctf-wp/" class="post-title-link" itemprop="url">moctf-wp</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-20 22:29:37" itemprop="dateCreated datePublished" datetime="2019-04-20T22:29:37+08:00">2019-04-20</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="MOCTF"><a href="#MOCTF" class="headerlink" title="MOCTF"></a>MOCTF</h1><h1 id="WEB"><a href="#WEB" class="headerlink" title="WEB"></a>WEB</h1><h2 id="没时间解释了"><a href="#没时间解释了" class="headerlink" title="没时间解释了"></a>没时间解释了</h2><p>打开题目链接，跳转到index2.php。考虑到一般都是直接index.php，所以尝试一下，发现还是会跳转到index2。猜测可能是302跳转。<br><br>burp抓包。action-&gt;Send to Repeater将index2改为index，Go。<br><br><img src="https://i.imgur.com/SRREldv.jpg" alt><br>访问uploadsomething.php<img src="https://i.imgur.com/uLXjuS8.jpg" alt><br>试着随便传了下文件，得知要得到flag就要访问给出的文件路径。<br>访问路径，却显示“Too Slow！”<br><br>这里卡了好久，后来想到应该是上传后立刻服务器将文件删除。此处就可以利用条件竞争漏洞。<br></p>
+<ul>
+<li>使用burp不停上传文件</li>
+<li>使用脚本不停访问文件<br>上传如图内容<img src="https://i.imgur.com/fQ9AnEp.jpg" alt>取得路径：<a href="http://119.23.73.3:5006/web2/uploads/5a3e88b9cef15e18d7d6f538b48769237bb12f2e/233" target="_blank" rel="noopener">http://119.23.73.3:5006/web2/uploads/5a3e88b9cef15e18d7d6f538b48769237bb12f2e/233</a><br><h3 id="burp"><a href="#burp" class="headerlink" title="burp"></a>burp</h3>burp抓包 action-&gt;send to intruder</li>
+<li>clear $</li>
+<li>payload type:null payloads</li>
+<li>payload options -&gt; continue indefinitely</li>
+<li><p>number of threads:20</p>
+<h3 id="py脚本"><a href="#py脚本" class="headerlink" title="py脚本"></a>py脚本</h3><p>脚本如下：<br></p>
+<p>  import requests<br>  u = “<a href="http://119.23.73.3:5006/web2/uploads/5a3e88b9cef15e18d7d6f538b48769237bb12f2e/233&quot;" target="_blank" rel="noopener">http://119.23.73.3:5006/web2/uploads/5a3e88b9cef15e18d7d6f538b48769237bb12f2e/233&quot;</a><br>  t = requests.get(u).text<br>  while True:</p>
+<pre><code>print(t)
+</code></pre><p>得到flag。<br>moctf{y0u_n4ed_f4st}  </p>
+</li>
+</ul>
+<h3 id="附"><a href="#附" class="headerlink" title="附"></a>附</h3><p>条件竞争漏洞<br><br><a href="https://www.0dayhack.com/post-666.html" target="_blank" rel="noopener">https://www.0dayhack.com/post-666.html</a><br><a href="https://blog.csdn.net/qq_36992198/article/details/80007405" target="_blank" rel="noopener">https://blog.csdn.net/qq_36992198/article/details/80007405</a></p>
+<h1 id="MISC"><a href="#MISC" class="headerlink" title="MISC"></a>MISC</h1><p>#REVERSE</p>
+<p>#CRYPTO</p>
+<p>#PWN</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/09/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -295,7 +468,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="A little and little student">
+      <meta itemprop="name" content="Snatsu">
     </span>
 
     
@@ -324,14 +497,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">发表于</span>
               
 
               
                 
               
 
-              <time title="Erstellt: 2019-04-09 20:48:32" itemprop="dateCreated datePublished" datetime="2019-04-09T20:48:32+08:00">2019-04-09</time>
+              <time title="创建时间：2019-04-09 20:48:32" itemprop="dateCreated datePublished" datetime="2019-04-09T20:48:32+08:00">2019-04-09</time>
             
 
             
@@ -460,8 +633,8 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">1</span>
-                    <span class="site-state-item-name">Artikel</span>
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
               
@@ -518,7 +691,7 @@
 </div>
 
 
-  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
 
 
 
@@ -526,7 +699,7 @@
 
 
 
-  <div class="theme-info">Design – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.1.0</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.1.0</div>
 
 
 

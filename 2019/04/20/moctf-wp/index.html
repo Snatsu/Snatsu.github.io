@@ -96,17 +96,21 @@
 
 
 
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="MOCTFWEB没时间解释了打开题目链接，跳转到index2.php。考虑到一般都是直接index.php，所以尝试一下，发现还是会跳转到index2。猜测可能是302跳转。burp抓包。action-&amp;gt;Send to Repeater将index2改为index，Go。访问uploadsomething.php试着随便传了下文件，得知要得到flag就要访问给出的文件路径。访问路径，却显示“">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2019/04/09/hello-world/index.html">
+<meta property="og:title" content="moctf-wp">
+<meta property="og:url" content="http://yoursite.com/2019/04/20/moctf-wp/index.html">
 <meta property="og:site_name" content="Snatsu">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="MOCTFWEB没时间解释了打开题目链接，跳转到index2.php。考虑到一般都是直接index.php，所以尝试一下，发现还是会跳转到index2。猜测可能是302跳转。burp抓包。action-&amp;gt;Send to Repeater将index2改为index，Go。访问uploadsomething.php试着随便传了下文件，得知要得到flag就要访问给出的文件路径。访问路径，却显示“">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-09T12:48:32.099Z">
+<meta property="og:image" content="https://i.imgur.com/SRREldv.jpg">
+<meta property="og:image" content="https://i.imgur.com/uLXjuS8.jpg">
+<meta property="og:image" content="https://i.imgur.com/fQ9AnEp.jpg">
+<meta property="og:updated_time" content="2019-04-20T14:29:37.197Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="moctf-wp">
+<meta name="twitter:description" content="MOCTFWEB没时间解释了打开题目链接，跳转到index2.php。考虑到一般都是直接index.php，所以尝试一下，发现还是会跳转到index2。猜测可能是302跳转。burp抓包。action-&amp;gt;Send to Repeater将index2改为index，Go。访问uploadsomething.php试着随便传了下文件，得知要得到flag就要访问给出的文件路径。访问路径，却显示“">
+<meta name="twitter:image" content="https://i.imgur.com/SRREldv.jpg">
 
 
 
@@ -114,7 +118,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2019/04/09/hello-world/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/20/moctf-wp/">
 
 
 
@@ -124,7 +128,7 @@
   };
 </script>
 
-  <title>Hello World | Snatsu</title>
+  <title>moctf-wp | Snatsu</title>
   
 
 
@@ -306,7 +310,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/09/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/20/moctf-wp/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="snatsu">
@@ -323,7 +327,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World
+          <h1 class="post-title" itemprop="name headline">moctf-wp
 
               
             
@@ -349,7 +353,7 @@
                 
               
 
-              <time title="创建时间：2019-04-09 20:48:32" itemprop="dateCreated datePublished" datetime="2019-04-09T20:48:32+08:00">2019-04-09</time>
+              <time title="创建时间：2019-04-20 22:29:37" itemprop="dateCreated datePublished" datetime="2019-04-20T22:29:37+08:00">2019-04-20</time>
             
 
             
@@ -384,15 +388,24 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <h1 id="MOCTF"><a href="#MOCTF" class="headerlink" title="MOCTF"></a>MOCTF</h1><h1 id="WEB"><a href="#WEB" class="headerlink" title="WEB"></a>WEB</h1><h2 id="没时间解释了"><a href="#没时间解释了" class="headerlink" title="没时间解释了"></a>没时间解释了</h2><p>打开题目链接，跳转到index2.php。考虑到一般都是直接index.php，所以尝试一下，发现还是会跳转到index2。猜测可能是302跳转。<br><br>burp抓包。action-&gt;Send to Repeater将index2改为index，Go。<br><br><img src="https://i.imgur.com/SRREldv.jpg" alt><br>访问uploadsomething.php<img src="https://i.imgur.com/uLXjuS8.jpg" alt><br>试着随便传了下文件，得知要得到flag就要访问给出的文件路径。<br>访问路径，却显示“Too Slow！”<br><br>这里卡了好久，后来想到应该是上传后立刻服务器将文件删除。此处就可以利用条件竞争漏洞。<br></p>
+<ul>
+<li>使用burp不停上传文件</li>
+<li>使用脚本不停访问文件<br>上传如图内容<img src="https://i.imgur.com/fQ9AnEp.jpg" alt>取得路径：<a href="http://119.23.73.3:5006/web2/uploads/5a3e88b9cef15e18d7d6f538b48769237bb12f2e/233" target="_blank" rel="noopener">http://119.23.73.3:5006/web2/uploads/5a3e88b9cef15e18d7d6f538b48769237bb12f2e/233</a><br><h3 id="burp"><a href="#burp" class="headerlink" title="burp"></a>burp</h3>burp抓包 action-&gt;send to intruder</li>
+<li>clear $</li>
+<li>payload type:null payloads</li>
+<li>payload options -&gt; continue indefinitely</li>
+<li><p>number of threads:20</p>
+<h3 id="py脚本"><a href="#py脚本" class="headerlink" title="py脚本"></a>py脚本</h3><p>脚本如下：<br></p>
+<p>  import requests<br>  u = “<a href="http://119.23.73.3:5006/web2/uploads/5a3e88b9cef15e18d7d6f538b48769237bb12f2e/233&quot;" target="_blank" rel="noopener">http://119.23.73.3:5006/web2/uploads/5a3e88b9cef15e18d7d6f538b48769237bb12f2e/233&quot;</a><br>  t = requests.get(u).text<br>  while True:</p>
+<pre><code>print(t)
+</code></pre><p>得到flag。<br>moctf{y0u_n4ed_f4st}  </p>
+</li>
+</ul>
+<h3 id="附"><a href="#附" class="headerlink" title="附"></a>附</h3><p>条件竞争漏洞<br><br><a href="https://www.0dayhack.com/post-666.html" target="_blank" rel="noopener">https://www.0dayhack.com/post-666.html</a><br><a href="https://blog.csdn.net/qq_36992198/article/details/80007405" target="_blank" rel="noopener">https://blog.csdn.net/qq_36992198/article/details/80007405</a></p>
+<h1 id="MISC"><a href="#MISC" class="headerlink" title="MISC"></a>MISC</h1><p>#REVERSE</p>
+<p>#CRYPTO</p>
+<p>#PWN</p>
 
       
     </div>
@@ -423,15 +436,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/04/09/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/04/20/moctf-wp/" rel="prev" title="moctf-wp">
-                moctf-wp <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -542,7 +555,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MOCTF"><span class="nav-number">1.</span> <span class="nav-text">MOCTF</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB"><span class="nav-number">2.</span> <span class="nav-text">WEB</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#没时间解释了"><span class="nav-number">2.1.</span> <span class="nav-text">没时间解释了</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#burp"><span class="nav-number">2.1.1.</span> <span class="nav-text">burp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#py脚本"><span class="nav-number">2.1.2.</span> <span class="nav-text">py脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#附"><span class="nav-number">2.1.3.</span> <span class="nav-text">附</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MISC"><span class="nav-number">3.</span> <span class="nav-text">MISC</span></a></li></ol></div>
             
 
           </div>

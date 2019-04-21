@@ -1732,15 +1732,6 @@ pre .javascript .function {
   border: 1px solid #eee;
   opacity: 1;
 }
-.site-author-image {
-  border-radius: 100%;
-}
-.site-author-image {
-  transition: transform 1s ease-out;
-}
-.site-author-image:hover {
-  transform: rotateZ(360deg);
-}
 .site-author-name {
   margin: 0;
   text-align: center;
@@ -1774,7 +1765,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #fcf599;
+  background: #df5265;
 }
 .feed-link,
 .chat {
@@ -2965,4 +2956,11 @@ ul.breadcrumb li+li:last-child {
   .pagination {
     margin: 8px 0 0;
   }
+}
+body {
+  background: url("../../images/bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
 }

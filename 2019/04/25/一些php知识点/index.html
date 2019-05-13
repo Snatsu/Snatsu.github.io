@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="Natsu">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/161026130024-9.jpg">
-<meta property="og:updated_time" content="2019-04-25T12:37:37.398Z">
+<meta property="og:updated_time" content="2019-05-13T12:31:52.630Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一些php知识点">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/161026130024-9.jpg">
@@ -377,12 +377,24 @@
                 
               
 
-              <time title="创建时间：2019-04-25 20:27:26 / 修改时间：20:37:37" itemprop="dateCreated datePublished" datetime="2019-04-25T20:27:26+08:00">2019-04-25</time>
+              <time title="创建时间：2019-04-25 20:27:26" itemprop="dateCreated datePublished" datetime="2019-04-25T20:27:26+08:00">2019-04-25</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-13 20:31:52" itemprop="dateModified" datetime="2019-05-13T20:31:52+08:00">2019-05-13</time>
               
             
           </span>
@@ -418,7 +430,9 @@
       
         <p><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/161026130024-9.jpg" alt></p>
 <a id="more"></a>
-<h1 id="PHP-htmlspecialchars-函数"><a href="#PHP-htmlspecialchars-函数" class="headerlink" title="PHP htmlspecialchars() 函数"></a>PHP htmlspecialchars() 函数</h1><h3 id="定义和用法"><a href="#定义和用法" class="headerlink" title="定义和用法"></a>定义和用法</h3><blockquote>
+<p>PS：函数大部分直接搬自php官网：<a href="https://www.php.net/manual/zh" target="_blank" rel="noopener">PHP中文手册</a></p>
+<p>和w3school：<a href="http://www.w3school.com.cn/php" target="_blank" rel="noopener">http://www.w3school.com.cn/php/</a></p>
+<h1 id="htmlspecialchars-函数"><a href="#htmlspecialchars-函数" class="headerlink" title="htmlspecialchars() 函数"></a>htmlspecialchars() 函数</h1><h3 id="定义和用法"><a href="#定义和用法" class="headerlink" title="定义和用法"></a>定义和用法</h3><blockquote>
 <h4 id="htmlspecialchars-函数把预定义的字符转换为-HTML-实体。"><a href="#htmlspecialchars-函数把预定义的字符转换为-HTML-实体。" class="headerlink" title="htmlspecialchars() 函数把预定义的字符转换为 HTML 实体。"></a>htmlspecialchars() 函数把预定义的字符转换为 HTML 实体。</h4></blockquote>
 <p>预定义的字符是：</p>
 <ul>
@@ -446,7 +460,37 @@ This is some &lt;b&gt;bold&lt;/b&gt; text.
 &lt;/html&gt;
 </code></pre><p>以上代码的浏览器输出：</p>
 <pre><code>This is some &lt;b&gt;bold&lt;/b&gt; text.
-</code></pre><p># </p>
+</code></pre><h1 id="stripos（）函数"><a href="#stripos（）函数" class="headerlink" title="stripos（）函数"></a>stripos（）函数</h1><p>stripos — 查找字符串首次出现的位置（不区分大小写）</p>
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><pre><code>stripos ( string $haystack , string $needle [, int $offset = 0 ] ) : int
+</code></pre><p>返回在字符串 haystack 中 needle 首次出现的数字位置。</p>
+<p>与 strpos() 不同，stripos() 不区分大小写。</p>
+<h3 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h3><p>haystack</p>
+<pre><code>在该字符串中查找。
+</code></pre><p>needle</p>
+<pre><code>注意 needle 可以是一个单字符或者多字符的字符串。
+
+如果 needle 不是一个字符串，那么它将被转换为整型并被视为字符顺序值。
+</code></pre><p>offset</p>
+<pre><code>可选的 offset 参数，从字符此数量的开始位置进行搜索。 如果是负数，就从字符末尾此数量的字符数开始统计。
+</code></pre><h1 id="file-get-contents（）"><a href="#file-get-contents（）" class="headerlink" title="file_get_contents（）"></a>file_get_contents（）</h1><p>file_get_contents — 将整个文件读入一个字符串</p>
+<h3 id="说明-1"><a href="#说明-1" class="headerlink" title="说明"></a>说明</h3><pre><code>file_get_contents(path,include_path,context,start,max_length)
+</code></pre><p>和 file() 一样，只除了 file_get_contents() 把文件读入一个字符串。将在参数 offset 所指定的位置开始读取长度为 maxlen 的内容。如果失败，file_get_contents() 将返回 FALSE。</p>
+<p>file_get_contents() 函数是用来将文件的内容读入到一个字符串中的首选方法。如果操作系统支持还会使用内存映射技术来增强性能。</p>
+<pre><code>Note:
+如果要打开有特殊字符的 URL （比如说有空格），就需要使用 urlencode() 进行 URL 编码。 
+</code></pre><h3 id="参数-1"><a href="#参数-1" class="headerlink" title="参数"></a>参数</h3><pre><code>path     必需。规定要读取的文件。
+include_path     可选。如果也想在 include_path 中搜寻文件的话，可以将该参数设为 &quot;1&quot;。
+context     可选。规定文件句柄的环境。context 是一套可以修改流的行为的选项。若使用 null，则忽略。
+start     可选。规定在文件中开始读取的位置。该参数是 PHP 5.1 新加的。
+max_length     可选。规定读取的字节数。该参数是 PHP 5.1 新加的。
+</code></pre><h1 id="substr"><a href="#substr" class="headerlink" title="substr()"></a>substr()</h1><p>substr() 函数返回字符串的一部分.</p>
+<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><pre><code>substr(string,start,length)
+</code></pre><h3 id="参数-2"><a href="#参数-2" class="headerlink" title="参数"></a>参数</h3><pre><code>string     必需。规定要返回其中一部分的字符串。
+start     必需。规定在字符串的何处开始。正数 - 在字符串的指定位置开始。负数 - 在从字符串结尾开始的指定位置开始。
+0 - 在字符串中的第一个字符处开始
+length     可选。规定被返回字符串的长度。默认是直到字符串的结尾。正数 - 从 start 参数所在的位置返回的长度。负数 - 从字符串末端返回的长度。
+</code></pre><p>PS：从0开始计数，包括起点。</p>
+<h1 id="PHP序列化与反序列化"><a href="#PHP序列化与反序列化" class="headerlink" title="PHP序列化与反序列化"></a>PHP序列化与反序列化</h1><p>内容不少，以后再写。</p>
 
       
     </div>
@@ -586,7 +630,7 @@ This is some &lt;b&gt;bold&lt;/b&gt; text.
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -689,7 +733,7 @@ This is some &lt;b&gt;bold&lt;/b&gt; text.
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#PHP-htmlspecialchars-函数"><span class="nav-number">1.</span> <span class="nav-text">PHP htmlspecialchars() 函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义和用法"><span class="nav-number">1.0.1.</span> <span class="nav-text">定义和用法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#htmlspecialchars-函数把预定义的字符转换为-HTML-实体。"><span class="nav-number">1.0.1.1.</span> <span class="nav-text">htmlspecialchars() 函数把预定义的字符转换为 HTML 实体。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例"><span class="nav-number">1.0.2.</span> <span class="nav-text">实例</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#htmlspecialchars-函数"><span class="nav-number">1.</span> <span class="nav-text">htmlspecialchars() 函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义和用法"><span class="nav-number">1.0.1.</span> <span class="nav-text">定义和用法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#htmlspecialchars-函数把预定义的字符转换为-HTML-实体。"><span class="nav-number">1.0.1.1.</span> <span class="nav-text">htmlspecialchars() 函数把预定义的字符转换为 HTML 实体。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例"><span class="nav-number">1.0.2.</span> <span class="nav-text">实例</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#stripos（）函数"><span class="nav-number">2.</span> <span class="nav-text">stripos（）函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#说明"><span class="nav-number">2.0.1.</span> <span class="nav-text">说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数"><span class="nav-number">2.0.2.</span> <span class="nav-text">参数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#file-get-contents（）"><span class="nav-number">3.</span> <span class="nav-text">file_get_contents（）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#说明-1"><span class="nav-number">3.0.1.</span> <span class="nav-text">说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数-1"><span class="nav-number">3.0.2.</span> <span class="nav-text">参数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#substr"><span class="nav-number">4.</span> <span class="nav-text">substr()</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语法"><span class="nav-number">4.0.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数-2"><span class="nav-number">4.0.2.</span> <span class="nav-text">参数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PHP序列化与反序列化"><span class="nav-number">5.</span> <span class="nav-text">PHP序列化与反序列化</span></a></li></div>
             
 
           </div>

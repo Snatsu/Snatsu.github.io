@@ -114,6 +114,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190421193118.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190422212049.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190422212334.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190527195843.png">
 <meta property="og:updated_time" content="2019-04-21T12:40:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="moctf-wp">
@@ -506,12 +507,19 @@ else echo &quot;&lt;center&gt;濂藉儚灏戜簡鐐逛粈涔�&lt;/center&gt;&q
 <p>打开题目链接，跳转到index2.php。考虑到一般都是直接index.php，所以尝试一下，发现还是会跳转到index2。猜测可能是302跳转。<br><br>burp抓包。action-&gt;Send to Repeater将index2改为index，Go。<br><br>访问uploadsomething.php<br>试着随便传了下文件，得知要得到flag就要访问给出的文件路径。<br>访问路径，却显示“Too Slow！”<br><br>这里卡了好久，后来想到应该是上传后立刻服务器将文件删除。此处就可以利用条件竞争漏洞。<br></p>
 <ul>
 <li>使用burp不停上传文件</li>
-<li>使用脚本不停访问文件<br>上传如图内容<img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190421191029.png" alt>取得路径：<a href="http://119.23.73.3:5006/web2/uploads/5a3e88b9cef15e18d7d6f538b48769237bb12f2e/233" target="_blank" rel="noopener">http://119.23.73.3:5006/web2/uploads/5a3e88b9cef15e18d7d6f538b48769237bb12f2e/233</a><br><h3 id="burp"><a href="#burp" class="headerlink" title="burp"></a>burp</h3>burp抓包 action-&gt;send to intruder</li>
+</ul>
+<ul>
+<li>使用脚本不停访问文件</li>
+</ul>
+<p>上传如图内容<img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190421191029.png" alt>取得路径：<a href="http://119.23.73.3:5006/web2/uploads/5a3e88b9cef15e18d7d6f538b48769237bb12f2e/233" target="_blank" rel="noopener">http://119.23.73.3:5006/web2/uploads/5a3e88b9cef15e18d7d6f538b48769237bb12f2e/233</a><br></p>
+<h3 id="burp"><a href="#burp" class="headerlink" title="burp"></a>burp</h3><p>burp抓包 action-&gt;send to intruder</p>
+<ul>
 <li>clear $</li>
 <li>payload type:null payloads</li>
 <li>payload options -&gt; continue indefinitely</li>
-<li>number of threads:20<h3 id="py脚本"><a href="#py脚本" class="headerlink" title="py脚本"></a>py脚本</h3>脚本如下：<br></li>
+<li>number of threads:20</li>
 </ul>
+<h3 id="py脚本"><a href="#py脚本" class="headerlink" title="py脚本"></a>py脚本</h3><p>脚本如下：<br></p>
 <pre><code>import requests
 u = &quot;http://119.23.73.3:5006/web2/uploads/5a3e88b9cef15e18d7d6f538b48769237bb12f2e/233&quot;
 t = requests.get(u).text
@@ -548,6 +556,60 @@ url2 = &quot;http://119.23.73.3:5001/web10/work.php&quot;
 a = s.post(url2,data = data).text
 print(a)
 </code></pre><p>得到flag<img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190422212334.png" alt></p>
+<h2 id="unset"><a href="#unset" class="headerlink" title="unset"></a>unset</h2><blockquote>
+<h3 id="知识点：php-unset函数，文件包含，伪协议"><a href="#知识点：php-unset函数，文件包含，伪协议" class="headerlink" title="知识点：php unset函数，文件包含，伪协议"></a>知识点：<em>php unset函数</em>，<em>文件包含，伪协议</em></h3></blockquote>
+<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>花了很长时间搞懂这道题的思路，是一道很有意思的代码审计题目</p>
+<h4 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h4><p>首先打开题目，得到源代码。</p>
+<p><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190527195843.png" alt></p>
+<p>可以看到先是定义了一个waf函数，然后foreach进行了一个操作，然后是主要部分</p>
+<p>一块块地来审计。</p>
+<p>首先</p>
+<pre><code>function waf($a){
+    foreach($a as $key =&gt; $value){
+        if(preg_match(&apos;/flag/i&apos;,$key)){
+            exit(&apos;are you a hacker&apos;);
+}
+}
+}
+</code></pre><p>可以得知waf的功能为检测传入的变量中的键值对的键是否含有’flag’，若含有，则直接退出并打印出’are you a hacker’。</p>
+<p>另外，这里正则表达式里的修饰符’i’的功能是使匹配对大小写不敏感，刚开始看到时还以为能够利用，不过这道题目没有用到就是了。</p>
+<p>然后 </p>
+<pre><code>foreach(array(&apos;_POST&apos;, &apos;_GET&apos;, &apos;_COOKIE&apos;) as $__R) {
+    if($$__R) { 
+    foreach($$__R as $__k =&gt; $__v) { 
+        if(isset($$__k) &amp;&amp; $$__k == $__v) unset($$__k); 
+    }
+ }
+}
+</code></pre><p>这一部分也是最难理解的一部分，姑且把自己的理解写下来，望大佬勿喷。</p>
+<p>简单来说，先将_POST,_GET,_COOKIE三个全局变量作为一个数组赋值给__R，然后如果任一全局变量(数组)中存在变量，则遍历变量作为键值对，且若键的值存在且键的值等于值的值(有点绕。。)，则使用unset函数销毁掉键的值这一变量。</p>
+<p>往下走，</p>
+<pre><code>if($_POST) { waf($_POST);}
+if($_GET) { waf($_GET); }
+if($_COOKIE) { waf($_COOKIE);}
+</code></pre><p>分别对_POST,_GET,_COOKIE调用三次waf。</p>
+<p>然后</p>
+<pre><code>if($_POST) extract($_POST, EXTR_SKIP);
+if($_GET) extract($_GET, EXTR_SKIP);
+</code></pre><p>可以通过extract函数传入变量的值。注意：此处的extract函数中第二个参数为’EXTR_SKIP’，即当同名变量存在时会跳过，并没有变量覆盖漏洞。</p>
+<p>最后</p>
+<pre><code>if(isset($_GET[&apos;flag&apos;])){
+if($_GET[&apos;flag&apos;] === $_GET[&apos;daiker&apos;]){
+        exit(&apos;error&apos;);
+}
+if(md5($_GET[&apos;flag&apos;] ) == md5($_GET[&apos;daiker&apos;])){
+        include($_GET[&apos;file&apos;]);
+}
+}
+</code></pre><p>简单的md5弱类型比较。</p>
+<p>QNKCDZO</p>
+<p>和</p>
+<p>240610708</p>
+<p>即可。</p>
+<p>综上，我们来分析一下如何利用unset函数绕过waf。</p>
+<p>……结合unset()的销毁变量和extract()的赋值功能，有这么个思路：先将_GET中的flag，daiker，file变量销毁，再重新赋值，就可以绕过两者之间的waf。</p>
+<p>那么问题来了，如何将_GET中的变量unset掉，即如何调用unset()函数呢？？</p>
+<p>注意到_GET和_POST</p>
 <h1 id="MISC"><a href="#MISC" class="headerlink" title="MISC"></a>MISC</h1><h1 id="REVERSE"><a href="#REVERSE" class="headerlink" title="REVERSE"></a>REVERSE</h1><h1 id="CRYPTO"><a href="#CRYPTO" class="headerlink" title="CRYPTO"></a>CRYPTO</h1><h1 id="PWN"><a href="#PWN" class="headerlink" title="PWN"></a>PWN</h1>
       
     </div>
@@ -565,30 +627,6 @@ print(a)
     
     
 
-    
-      <div>
-        
-
-
-
-
-  
-
-
-
-<ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>本文作者： </strong>shiki</li>
-  <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    
-    <a href="http://yoursite.com/2019/04/20/moctf-wp/" title="moctf-wp">http://yoursite.com/2019/04/20/moctf-wp/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
-</ul>
-
-      </div>
     
 
     <footer class="post-footer">
@@ -792,7 +830,7 @@ print(a)
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MOCTF"><span class="nav-number">1.</span> <span class="nav-text">MOCTF</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB"><span class="nav-number">2.</span> <span class="nav-text">WEB</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#还是水题"><span class="nav-number">2.1.</span> <span class="nav-text">还是水题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#知识点：修改html标签属性"><span class="nav-number">2.1.1.</span> <span class="nav-text">知识点：修改html标签属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#我想要钱"><span class="nav-number">2.2.</span> <span class="nav-text">我想要钱</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#知识点：php的科学记数法，time-函数"><span class="nav-number">2.2.1.</span> <span class="nav-text">知识点：php的科学记数法，time()函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于科学计数法"><span class="nav-number">2.2.2.</span> <span class="nav-text">关于科学计数法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#P-S-虽然在excel中1-00E-10是正确写法，但1e10好像也并非是错误的。"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">P.S. 虽然在excel中1.00E+10是正确写法，但1e10好像也并非是错误的。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件包含"><span class="nav-number">2.3.</span> <span class="nav-text">文件包含</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#知识点：文件包含，phpfilter协议流"><span class="nav-number">2.3.1.</span> <span class="nav-text">知识点：文件包含，phpfilter协议流</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#P-S-base64编码前为php代码会被直接执行，而编码后可以读取。"><span class="nav-number">2.3.1.1.</span> <span class="nav-text">P.S. base64编码前为php代码会被直接执行，而编码后可以读取。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">2.3.2.</span> <span class="nav-text">参考</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#php黑魔法"><span class="nav-number">2.4.</span> <span class="nav-text">php黑魔法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#知识点：php-源码泄露"><span class="nav-number">2.4.1.</span> <span class="nav-text">知识点：php~源码泄露</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考："><span class="nav-number">2.4.2.</span> <span class="nav-text">参考：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#没时间解释了"><span class="nav-number">2.5.</span> <span class="nav-text">没时间解释了</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#知识点：302跳转，条件竞争"><span class="nav-number">2.5.1.</span> <span class="nav-text">知识点：302跳转，条件竞争</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#burp"><span class="nav-number">2.5.2.</span> <span class="nav-text">burp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#py脚本"><span class="nav-number">2.5.3.</span> <span class="nav-text">py脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#附"><span class="nav-number">2.5.4.</span> <span class="nav-text">附</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#死亡退出"><span class="nav-number">2.6.</span> <span class="nav-text">死亡退出</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#知识点：base64绕过php-exit"><span class="nav-number">2.6.1.</span> <span class="nav-text">知识点：base64绕过php exit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#附-1"><span class="nav-number">2.6.2.</span> <span class="nav-text">附</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#火眼金睛"><span class="nav-number">2.7.</span> <span class="nav-text">火眼金睛</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#知识点：py脚本"><span class="nav-number">2.7.1.</span> <span class="nav-text">知识点：py脚本</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MISC"><span class="nav-number">3.</span> <span class="nav-text">MISC</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#REVERSE"><span class="nav-number">4.</span> <span class="nav-text">REVERSE</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CRYPTO"><span class="nav-number">5.</span> <span class="nav-text">CRYPTO</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PWN"><span class="nav-number">6.</span> <span class="nav-text">PWN</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MOCTF"><span class="nav-number">1.</span> <span class="nav-text">MOCTF</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB"><span class="nav-number">2.</span> <span class="nav-text">WEB</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#还是水题"><span class="nav-number">2.1.</span> <span class="nav-text">还是水题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#知识点：修改html标签属性"><span class="nav-number">2.1.1.</span> <span class="nav-text">知识点：修改html标签属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#我想要钱"><span class="nav-number">2.2.</span> <span class="nav-text">我想要钱</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#知识点：php的科学记数法，time-函数"><span class="nav-number">2.2.1.</span> <span class="nav-text">知识点：php的科学记数法，time()函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于科学计数法"><span class="nav-number">2.2.2.</span> <span class="nav-text">关于科学计数法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#P-S-虽然在excel中1-00E-10是正确写法，但1e10好像也并非是错误的。"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">P.S. 虽然在excel中1.00E+10是正确写法，但1e10好像也并非是错误的。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件包含"><span class="nav-number">2.3.</span> <span class="nav-text">文件包含</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#知识点：文件包含，phpfilter协议流"><span class="nav-number">2.3.1.</span> <span class="nav-text">知识点：文件包含，phpfilter协议流</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#P-S-base64编码前为php代码会被直接执行，而编码后可以读取。"><span class="nav-number">2.3.1.1.</span> <span class="nav-text">P.S. base64编码前为php代码会被直接执行，而编码后可以读取。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">2.3.2.</span> <span class="nav-text">参考</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#php黑魔法"><span class="nav-number">2.4.</span> <span class="nav-text">php黑魔法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#知识点：php-源码泄露"><span class="nav-number">2.4.1.</span> <span class="nav-text">知识点：php~源码泄露</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考："><span class="nav-number">2.4.2.</span> <span class="nav-text">参考：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#没时间解释了"><span class="nav-number">2.5.</span> <span class="nav-text">没时间解释了</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#知识点：302跳转，条件竞争"><span class="nav-number">2.5.1.</span> <span class="nav-text">知识点：302跳转，条件竞争</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#burp"><span class="nav-number">2.5.2.</span> <span class="nav-text">burp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#py脚本"><span class="nav-number">2.5.3.</span> <span class="nav-text">py脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#附"><span class="nav-number">2.5.4.</span> <span class="nav-text">附</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#死亡退出"><span class="nav-number">2.6.</span> <span class="nav-text">死亡退出</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#知识点：base64绕过php-exit"><span class="nav-number">2.6.1.</span> <span class="nav-text">知识点：base64绕过php exit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#附-1"><span class="nav-number">2.6.2.</span> <span class="nav-text">附</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#火眼金睛"><span class="nav-number">2.7.</span> <span class="nav-text">火眼金睛</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#知识点：py脚本"><span class="nav-number">2.7.1.</span> <span class="nav-text">知识点：py脚本</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#unset"><span class="nav-number">2.8.</span> <span class="nav-text">unset</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#知识点：php-unset函数，文件包含，伪协议"><span class="nav-number">2.8.1.</span> <span class="nav-text">知识点：php unset函数，文件包含，伪协议</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#前言"><span class="nav-number">2.8.1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#正文"><span class="nav-number">2.8.1.2.</span> <span class="nav-text">正文</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MISC"><span class="nav-number">3.</span> <span class="nav-text">MISC</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#REVERSE"><span class="nav-number">4.</span> <span class="nav-text">REVERSE</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CRYPTO"><span class="nav-number">5.</span> <span class="nav-text">CRYPTO</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PWN"><span class="nav-number">6.</span> <span class="nav-text">PWN</span></a></li></ol></div>
             
 
           </div>

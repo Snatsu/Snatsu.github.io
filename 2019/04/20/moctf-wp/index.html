@@ -115,6 +115,8 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190422212049.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190422212334.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190527195843.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190528084716.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190528084747.png">
 <meta property="og:updated_time" content="2019-04-21T12:40:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="moctf-wp">
@@ -609,7 +611,12 @@ if(md5($_GET[&apos;flag&apos;] ) == md5($_GET[&apos;daiker&apos;])){
 <p>综上，我们来分析一下如何利用unset函数绕过waf。</p>
 <p>……结合unset()的销毁变量和extract()的赋值功能，有这么个思路：先将_GET中的flag，daiker，file变量销毁，再重新赋值，就可以绕过两者之间的waf。</p>
 <p>那么问题来了，如何将_GET中的变量unset掉，即如何调用unset()函数呢？？</p>
-<p>注意到_GET和_POST</p>
+<p>注意到最后进行的判断都是对_GET中的变量进行判断，所以可以用_POST传入_GET变量来销毁，构造payload：</p>
+<p><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190528084716.png" alt></p>
+<p>成功读到flag。</p>
+<p><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190528084747.png" alt></p>
+<p>base64解密即可。</p>
+<p>_PS_：在_POST中传入的_GET[flag]并不会被waf拦截掉，因为将该参数传给waf时，形参为_GET,并无’flag’，所以不会被过滤。</p>
 <h1 id="MISC"><a href="#MISC" class="headerlink" title="MISC"></a>MISC</h1><h1 id="REVERSE"><a href="#REVERSE" class="headerlink" title="REVERSE"></a>REVERSE</h1><h1 id="CRYPTO"><a href="#CRYPTO" class="headerlink" title="CRYPTO"></a>CRYPTO</h1><h1 id="PWN"><a href="#PWN" class="headerlink" title="PWN"></a>PWN</h1>
       
     </div>

@@ -96,17 +96,26 @@
 
 
 
-  <meta name="description" content="trying to understand">
+  <meta name="description" content="Docker!">
+<meta name="keywords" content="ctf">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Docker学习笔记">
-<meta property="og:url" content="http://yoursite.com/2019/06/04/Docker学习笔记/index.html">
+<meta property="og:url" content="http://n4tsu.top/2019/06/04/Docker学习笔记/index.html">
 <meta property="og:site_name" content="Natsu">
-<meta property="og:description" content="trying to understand">
+<meta property="og:description" content="Docker!">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-06-04T11:20:39.894Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190604193958.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190604194115.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190604194711.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190604195859.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190604200025.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190604200102.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190604200337.png">
+<meta property="og:updated_time" content="2019-06-04T12:03:49.254Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker学习笔记">
-<meta name="twitter:description" content="trying to understand">
+<meta name="twitter:description" content="Docker!">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190604193958.png">
 
 
 
@@ -114,7 +123,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2019/06/04/Docker学习笔记/">
+  <link rel="canonical" href="http://n4tsu.top/2019/06/04/Docker学习笔记/">
 
 
 
@@ -335,7 +344,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/04/Docker学习笔记/">
+    <link itemprop="mainEntityOfPage" href="http://n4tsu.top/2019/06/04/Docker学习笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shiki">
@@ -378,9 +387,13 @@
                 
               
 
-              <time title="创建时间：2019-06-04 19:20:39" itemprop="dateCreated datePublished" datetime="2019-06-04T19:20:39+08:00">2019-06-04</time>
+              <time title="创建时间：2019-06-04 19:20:39 / 修改时间：20:03:49" itemprop="dateCreated datePublished" datetime="2019-06-04T19:20:39+08:00">2019-06-04</time>
             
 
+            
+              
+
+              
             
           </span>
 
@@ -413,7 +426,42 @@
       
 
       
-        
+        <p>Docker!</p>
+<a id="more"></a>
+<h1 id="0x00-啥是Docker"><a href="#0x00-啥是Docker" class="headerlink" title="0x00 啥是Docker"></a>0x00 啥是Docker</h1><p>8说了，上图：</p>
+<h3 id="Docker介绍"><a href="#Docker介绍" class="headerlink" title="Docker介绍"></a>Docker介绍</h3><p><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190604193958.png" alt></p>
+<h3 id="Docker的优点"><a href="#Docker的优点" class="headerlink" title="Docker的优点"></a>Docker的优点</h3><p><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190604194115.png" alt></p>
+<h1 id="0x01-环境搭建和安装"><a href="#0x01-环境搭建和安装" class="headerlink" title="0x01 环境搭建和安装"></a>0x01 环境搭建和安装</h1><p>Docker既可以在windows上也可以在linux上进行安装使用，但win10需要专业版来使用hyper-v服务，家庭版也可以安装配置hyper-v，但自己弄的时候总是出现错误，于是这里就只记录使用linux的了。</p>
+<p>本人使用的linux发行版为Ubuntu16.04版本，内核版本如下：</p>
+<p><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190604194711.png" alt></p>
+<p>首先更换源，这里我使用的是阿里源。</p>
+<p><a href="https://blog.csdn.net/qq_35451572/article/details/79516563" target="_blank" rel="noopener">这是更换国内源的教程</a></p>
+<p>更换之后<br>先更新apt包索引</p>
+<pre><code>sudo apt-get update
+</code></pre><p>如果已经安装有旧版本的docker，先进行删除：</p>
+<pre><code>sudo apt-get remove docker docker-engine docker-ce docker.io
+</code></pre><p>为了使apt可以通过https使用Repository，先安装以下包</p>
+<pre><code>sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
+</code></pre><p><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190604195859.png" alt></p>
+<p>添加Docker官方GPG密钥</p>
+<pre><code>curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+</code></pre><p><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190604200025.png" alt></p>
+<p>添加源信息</p>
+<pre><code>sudo add-apt-repository \
+&quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+$(lsb_release -cs) \
+stable&quot;
+</code></pre><p>再次更新下apt包索引</p>
+<pre><code>sudo apt-get update
+</code></pre><p>确认源信息是否正确</p>
+<pre><code>sudo apt-cache madison docker-ce
+</code></pre><p><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190604200102.png" alt><br>然后。就可以安装最新版的Docker CE了：</p>
+<pre><code>sudo apt-get install -y docker-ce
+</code></pre><p>查看docker版本：</p>
+<pre><code>sudo docker -v
+</code></pre><p><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190604200337.png" alt></p>
+<p>安装成功。</p>
+
       
     </div>
 
@@ -433,6 +481,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ctf/" rel="tag"><i class="fa fa-tag"></i> ctf</a>
+          
+        </div>
       
 
       
@@ -495,8 +549,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -592,7 +655,7 @@
                   </li>
                 
                   <li class="links-of-blogroll-item">
-                    <a href="https://LiuL14n.github.io" title="https://LiuL14n.github.io" rel="noopener" target="_blank">LiuL14n</a>
+                    <a href="https://LiuL14n.top" title="https://LiuL14n.top" rel="noopener" target="_blank">LiuL14n</a>
                   </li>
                 
                   <li class="links-of-blogroll-item">
@@ -611,6 +674,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00-啥是Docker"><span class="nav-number">1.</span> <span class="nav-text">0x00 啥是Docker</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker介绍"><span class="nav-number">1.0.1.</span> <span class="nav-text">Docker介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker的优点"><span class="nav-number">1.0.2.</span> <span class="nav-text">Docker的优点</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01-环境搭建和安装"><span class="nav-number">2.</span> <span class="nav-text">0x01 环境搭建和安装</span></a></li></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       

@@ -100,16 +100,26 @@
 
 
 
-  <meta name="description" content="trying to understand">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Natsu">
-<meta property="og:url" content="http://n4tsu.top/index.html">
+  <meta name="description" content="快乐校赛">
+<meta name="keywords" content="ctf">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SKCTF-5-25wp">
+<meta property="og:url" content="http://n4tsu.top/2019/06/04/SKCTF-5-25wp/index.html">
 <meta property="og:site_name" content="Natsu">
-<meta property="og:description" content="trying to understand">
+<meta property="og:description" content="快乐校赛">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190604224316.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190604224346.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190604224426.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190604224507.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190604225147.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190604225320.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190604225419.png">
+<meta property="og:updated_time" content="2019-06-04T15:01:47.211Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Natsu">
-<meta name="twitter:description" content="trying to understand">
+<meta name="twitter:title" content="SKCTF-5-25wp">
+<meta name="twitter:description" content="快乐校赛">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190604224316.png">
 
 
 
@@ -117,7 +127,7 @@
 
   
   
-  <link rel="canonical" href="http://n4tsu.top/">
+  <link rel="canonical" href="http://n4tsu.top/2019/06/04/SKCTF-5-25wp/">
 
 
 
@@ -127,7 +137,7 @@
   };
 </script>
 
-  <title>Natsu</title>
+  <title>SKCTF-5-25wp | Natsu</title>
   
 
 
@@ -175,8 +185,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -214,7 +223,7 @@
         
         
           
-          <li class="menu-item menu-item-home menu-item-active">
+          <li class="menu-item menu-item-home">
 
     
     
@@ -322,9 +331,9 @@
           
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -356,10 +365,8 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/06/04/SKCTF-5-25wp/" class="post-title-link" itemprop="url">SKCTF-5-25wp</a>
+          <h1 class="post-title" itemprop="name headline">SKCTF-5-25wp
+
               
             
           </h1>
@@ -423,18 +430,39 @@
       
 
       
-        
-          <p>快乐校赛</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/06/04/SKCTF-5-25wp/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
+        <p>快乐校赛</p>
+<a id="more"></a>
+<h1 id="WEB"><a href="#WEB" class="headerlink" title="WEB"></a>WEB</h1><h3 id="一个不能按的按钮"><a href="#一个不能按的按钮" class="headerlink" title="一个不能按的按钮"></a>一个不能按的按钮</h3><p>题目复现地址：<a href="http://47.103.6.99:8000" target="_blank" rel="noopener">http://47.103.6.99:8000</a></p>
+<p><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190604224316.png" alt></p>
+<p>打开题目，点击flag。</p>
+<p><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190604224346.png" alt></p>
+<p>确实是不能按的。。</p>
+<p>想到应该是改js。</p>
+<p><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190604224426.png" alt></p>
+<p>去掉此处的disabled，即可点击。</p>
+<p>给出源码：</p>
+<p><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190604224507.png" alt></p>
+<p>解题思路应是利用assert断言函数和page这一可控变量。</p>
+<p>assert函数当变量为真值时将字符串当作语句执行，而当false值时将其转换成一空字符串。</p>
+<p>注意，构造payload时不可闭合assert函数，因为脱离这一函数的语句都会被自动转义，故应闭合file_exists函数来进行任意语句执行。</p>
+<p>另外，最后进行注释的时候应该注意不可使用#。因为#在url中是起一个锚(或者说书签的作用，可自行百度)的作用。此处参考sql注入时使用#的url编码%23，或者php的另外一种单行注释方法//均可。</p>
+<p>综上，构造payload：</p>
+<pre><code>http://47.103.6.99:8000/flag.php?file=flag%27)%20or%20system(%27ls%27);//
+</code></pre><p>得到</p>
+<p><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190604225147.png" alt></p>
+<p>这里我几乎翻遍了所有目录(../../)也没想到ls -a来查看隐藏文件orz</p>
+<pre><code>http://47.103.6.99:8000/flag.php?file=flag%27)%20or%20system(%27ls%20-a%27);//
+</code></pre><p>可以看到<br><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190604225320.png" alt></p>
+<p>一个明显存放flag的文件。</p>
+<p>cat之。</p>
+<pre><code>http://47.103.6.99:8000/flag.php?file=flag%27)%20or%20system(%27cat%20.ffll44gg%27);//
+</code></pre><p>拿到flag。</p>
+<p><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190604225419.png" alt></p>
+<h4 id="附"><a href="#附" class="headerlink" title="附"></a>附</h4><p><a href="https://www.cnblogs.com/julin-peng/p/4237791.html" target="_blank" rel="noopener">URL中“#” “？” &amp;“”号的作用</a></p>
+<p><a href="http://www.vuln.cn/8395" target="_blank" rel="noopener">浅析一句话后门中eval与assert执行条件与原理</a></p>
+<p><a href="https://yq.aliyun.com/articles/27402" target="_blank" rel="noopener">php中assert方法的安全问题</a></p>
+<p><a href="https://www.php.net/manual/zh/function.assert.php" target="_blank" rel="noopener">PHP assert() Manual (官方文档)</a></p>
+
       
     </div>
 
@@ -452,315 +480,63 @@
     
 
     
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>shiki</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://n4tsu.top/2019/06/04/SKCTF-5-25wp/" title="SKCTF-5-25wp">http://n4tsu.top/2019/06/04/SKCTF-5-25wp/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://n4tsu.top/2019/06/04/Docker学习笔记/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="shiki">
-      <meta itemprop="description" content="trying to understand">
-      <meta itemprop="image" content="/images/head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Natsu">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/06/04/Docker学习笔记/" class="post-title-link" itemprop="url">Docker学习笔记</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-06-04 19:20:39 / 修改时间：21:44:29" itemprop="dateCreated datePublished" datetime="2019-06-04T19:20:39+08:00">2019-06-04</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/ctf/" rel="tag"><i class="fa fa-tag"></i> ctf</a>
           
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          <p>Docker!</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/06/04/Docker学习笔记/#more" rel="contents">
-                阅读全文 &raquo;
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/04/Docker学习笔记/" rel="next" title="Docker学习笔记">
+                <i class="fa fa-chevron-left"></i> Docker学习笔记
               </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://n4tsu.top/2019/05/20/upload-lab记录/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="shiki">
-      <meta itemprop="description" content="trying to understand">
-      <meta itemprop="image" content="/images/head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Natsu">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/05/20/upload-lab记录/" class="post-title-link" itemprop="url">upload-lab记录</a>
-              
             
-          </h1>
-        
+          </div>
 
-        <div class="post-meta">
-          <span class="post-time">
+          <span class="post-nav-divider"></span>
 
+          <div class="post-nav-prev post-nav-item">
             
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-05-20 19:10:09 / 修改时间：20:14:59" itemprop="dateCreated datePublished" datetime="2019-05-20T19:10:09+08:00">2019-05-20</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <p>文件上传靶场</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/05/20/upload-lab记录/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -770,980 +546,15 @@
   </article>
 
 
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://n4tsu.top/2019/05/12/一些bugku的题目wp/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="shiki">
-      <meta itemprop="description" content="trying to understand">
-      <meta itemprop="image" content="/images/head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Natsu">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/05/12/一些bugku的题目wp/" class="post-title-link" itemprop="url">一些bugku的题目wp</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-05-12 22:37:02" itemprop="dateCreated datePublished" datetime="2019-05-12T22:37:02+08:00">2019-05-12</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-05-24 20:49:00" itemprop="dateModified" datetime="2019-05-24T20:49:00+08:00">2019-05-24</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>BUGKUCTF</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/05/12/一些bugku的题目wp/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://n4tsu.top/2019/05/11/sqli-lab记录-part1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="shiki">
-      <meta itemprop="description" content="trying to understand">
-      <meta itemprop="image" content="/images/head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Natsu">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/05/11/sqli-lab记录-part1/" class="post-title-link" itemprop="url">sqli-lab记录-part1</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-05-11 17:07:32" itemprop="dateCreated datePublished" datetime="2019-05-11T17:07:32+08:00">2019-05-11</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-05-13 21:34:28" itemprop="dateModified" datetime="2019-05-13T21:34:28+08:00">2019-05-13</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>PART1</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/05/11/sqli-lab记录-part1/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://n4tsu.top/2019/05/11/sqli-lab记录-part0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="shiki">
-      <meta itemprop="description" content="trying to understand">
-      <meta itemprop="image" content="/images/head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Natsu">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/05/11/sqli-lab记录-part0/" class="post-title-link" itemprop="url">sqli-lab记录-part0</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-05-11 16:42:10" itemprop="dateCreated datePublished" datetime="2019-05-11T16:42:10+08:00">2019-05-11</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-05-13 21:34:36" itemprop="dateModified" datetime="2019-05-13T21:34:36+08:00">2019-05-13</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>PART0</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/05/11/sqli-lab记录-part0/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://n4tsu.top/2019/04/25/一些密码学知识点/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="shiki">
-      <meta itemprop="description" content="trying to understand">
-      <meta itemprop="image" content="/images/head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Natsu">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/25/一些密码学知识点/" class="post-title-link" itemprop="url">一些密码学知识点</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-25 22:05:13" itemprop="dateCreated datePublished" datetime="2019-04-25T22:05:13+08:00">2019-04-25</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-05-13 21:35:01" itemprop="dateModified" datetime="2019-05-13T21:35:01+08:00">2019-05-13</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>CRYPTO</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/04/25/一些密码学知识点/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://n4tsu.top/2019/04/25/一些php知识点/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="shiki">
-      <meta itemprop="description" content="trying to understand">
-      <meta itemprop="image" content="/images/head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Natsu">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/25/一些php知识点/" class="post-title-link" itemprop="url">一些php知识点</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-25 20:27:26" itemprop="dateCreated datePublished" datetime="2019-04-25T20:27:26+08:00">2019-04-25</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-05-23 10:42:35" itemprop="dateModified" datetime="2019-05-23T10:42:35+08:00">2019-05-23</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>PHP是世界上最好的语言。<br>我爱PHP。<br>PHP使我快乐。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/04/25/一些php知识点/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://n4tsu.top/2019/04/20/moctf-wp/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="shiki">
-      <meta itemprop="description" content="trying to understand">
-      <meta itemprop="image" content="/images/head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Natsu">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/20/moctf-wp/" class="post-title-link" itemprop="url">moctf-wp</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-20 22:29:37" itemprop="dateCreated datePublished" datetime="2019-04-20T22:29:37+08:00">2019-04-20</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-04-21 20:40:20" itemprop="dateModified" datetime="2019-04-21T20:40:20+08:00">2019-04-21</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>()利国家生死已</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/04/20/moctf-wp/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -1763,8 +574,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -1879,6 +699,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB"><span class="nav-number">1.</span> <span class="nav-text">WEB</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一个不能按的按钮"><span class="nav-number">1.0.1.</span> <span class="nav-text">一个不能按的按钮</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#附"><span class="nav-number">1.0.1.1.</span> <span class="nav-text">附</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -2042,6 +879,10 @@
 
 
   
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
 
   
 
@@ -2057,6 +898,8 @@
 
   
 
+
+  
 
 
   

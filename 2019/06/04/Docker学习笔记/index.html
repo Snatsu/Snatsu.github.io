@@ -115,7 +115,12 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190604200025.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190604200102.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190604200337.png">
-<meta property="og:updated_time" content="2019-06-04T12:03:49.254Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190604200526.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190604204149.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190604204440.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190604204730.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190604204643.png">
+<meta property="og:updated_time" content="2019-06-04T13:44:29.074Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker学习笔记">
 <meta name="twitter:description" content="Docker!">
@@ -391,7 +396,7 @@
                 
               
 
-              <time title="创建时间：2019-06-04 19:20:39 / 修改时间：20:03:49" itemprop="dateCreated datePublished" datetime="2019-06-04T19:20:39+08:00">2019-06-04</time>
+              <time title="创建时间：2019-06-04 19:20:39 / 修改时间：21:44:29" itemprop="dateCreated datePublished" datetime="2019-06-04T19:20:39+08:00">2019-06-04</time>
             
 
             
@@ -438,33 +443,51 @@
 <h1 id="0x01-环境搭建和安装"><a href="#0x01-环境搭建和安装" class="headerlink" title="0x01 环境搭建和安装"></a>0x01 环境搭建和安装</h1><p>Docker既可以在windows上也可以在linux上进行安装使用，但win10需要专业版来使用hyper-v服务，家庭版也可以安装配置hyper-v，但自己弄的时候总是出现错误，于是这里就只记录使用linux的了。</p>
 <p>本人使用的linux发行版为Ubuntu16.04版本，内核版本如下：</p>
 <p><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190604194711.png" alt></p>
-<p>首先更换源，这里我使用的是阿里源。</p>
+<h3 id="首先更换源"><a href="#首先更换源" class="headerlink" title="首先更换源"></a>首先更换源</h3><p>这里我使用的是阿里源。</p>
 <p><a href="https://blog.csdn.net/qq_35451572/article/details/79516563" target="_blank" rel="noopener">这是更换国内源的教程</a></p>
-<p>更换之后<br>先更新apt包索引</p>
-<pre><code>sudo apt-get update
-</code></pre><p>如果已经安装有旧版本的docker，先进行删除：</p>
-<pre><code>sudo apt-get remove docker docker-engine docker-ce docker.io
-</code></pre><p>为了使apt可以通过https使用Repository，先安装以下包</p>
-<pre><code>sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
+<p>更换之后<br>先</p>
+<h3 id="更新apt包索引"><a href="#更新apt包索引" class="headerlink" title="更新apt包索引"></a>更新apt包索引</h3><pre><code>sudo apt-get update
+</code></pre><h3 id="如果已经安装有旧版本的docker，先进行删除："><a href="#如果已经安装有旧版本的docker，先进行删除：" class="headerlink" title="如果已经安装有旧版本的docker，先进行删除："></a>如果已经安装有旧版本的docker，先进行删除：</h3><pre><code>sudo apt-get remove docker docker-engine docker-ce docker.io
+</code></pre><h3 id="为了使apt可以通过https使用Repository，先安装以下包"><a href="#为了使apt可以通过https使用Repository，先安装以下包" class="headerlink" title="为了使apt可以通过https使用Repository，先安装以下包"></a>为了使apt可以通过https使用Repository，先安装以下包</h3><pre><code>sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
 </code></pre><p><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190604195859.png" alt></p>
-<p>添加Docker官方GPG密钥</p>
-<pre><code>curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+<h3 id="添加Docker官方GPG密钥"><a href="#添加Docker官方GPG密钥" class="headerlink" title="添加Docker官方GPG密钥"></a>添加Docker官方GPG密钥</h3><pre><code>curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 </code></pre><p><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190604200025.png" alt></p>
-<p>添加源信息</p>
-<pre><code>sudo add-apt-repository \
+<h3 id="添加源信息"><a href="#添加源信息" class="headerlink" title="添加源信息"></a>添加源信息</h3><pre><code>sudo add-apt-repository \
 &quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu \
 $(lsb_release -cs) \
 stable&quot;
-</code></pre><p>再次更新下apt包索引</p>
-<pre><code>sudo apt-get update
+</code></pre><h3 id="再次更新下apt包索引"><a href="#再次更新下apt包索引" class="headerlink" title="再次更新下apt包索引"></a>再次更新下apt包索引</h3><pre><code>sudo apt-get update
 </code></pre><p>确认源信息是否正确</p>
 <pre><code>sudo apt-cache madison docker-ce
-</code></pre><p><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190604200102.png" alt><br>然后。就可以安装最新版的Docker CE了：</p>
-<pre><code>sudo apt-get install -y docker-ce
+</code></pre><p><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190604200102.png" alt><br>然后。就可以</p>
+<h3 id="安装最新版的Docker-CE："><a href="#安装最新版的Docker-CE：" class="headerlink" title="安装最新版的Docker CE："></a>安装最新版的Docker CE：</h3><pre><code>sudo apt-get install -y docker-ce
 </code></pre><p>查看docker版本：</p>
 <pre><code>sudo docker -v
 </code></pre><p><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190604200337.png" alt></p>
 <p>安装成功。</p>
+<h1 id="0x02-常用命令介绍"><a href="#0x02-常用命令介绍" class="headerlink" title="0x02 常用命令介绍"></a>0x02 常用命令介绍</h1><ul>
+<li><p>查看docker服务启动情况：</p>
+<p>  sudo systemctl status docker</p>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190604200526.png" alt></p>
+<p>如未启动，启动docker服务：</p>
+<pre><code>sudo systemctl start docker
+</code></pre><p>查找镜像：</p>
+<pre><code>docker search xxx
+</code></pre><p>这里我查找learn ：</p>
+<pre><code>docker search learn
+</code></pre><p><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190604204149.png" alt></p>
+<p>下载镜像：</p>
+<pre><code>docker pull learn/tutorial
+</code></pre><p>查看已有的镜像：</p>
+<pre><code>docker images
+</code></pre><p><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190604204440.png" alt></p>
+<p>使用run命令运行：<br>两种用法</p>
+<pre><code>docker run hello-world
+</code></pre><p><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190604204730.png" alt></p>
+<pre><code>docker run learn/tutorial echo &quot;helloworld!&quot;
+</code></pre><p><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190604204643.png" alt></p>
 
       
     </div>
@@ -534,6 +557,10 @@ stable&quot;
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/04/SKCTF-5-25wp/" rel="prev" title="SKCTF-5-25wp">
+                SKCTF-5-25wp <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -606,7 +633,7 @@ stable&quot;
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-count">9</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -713,7 +740,7 @@ stable&quot;
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00-啥是Docker"><span class="nav-number">1.</span> <span class="nav-text">0x00 啥是Docker</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker介绍"><span class="nav-number">1.0.1.</span> <span class="nav-text">Docker介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker的优点"><span class="nav-number">1.0.2.</span> <span class="nav-text">Docker的优点</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01-环境搭建和安装"><span class="nav-number">2.</span> <span class="nav-text">0x01 环境搭建和安装</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00-啥是Docker"><span class="nav-number">1.</span> <span class="nav-text">0x00 啥是Docker</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker介绍"><span class="nav-number">1.0.1.</span> <span class="nav-text">Docker介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker的优点"><span class="nav-number">1.0.2.</span> <span class="nav-text">Docker的优点</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01-环境搭建和安装"><span class="nav-number">2.</span> <span class="nav-text">0x01 环境搭建和安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#首先更换源"><span class="nav-number">2.0.1.</span> <span class="nav-text">首先更换源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新apt包索引"><span class="nav-number">2.0.2.</span> <span class="nav-text">更新apt包索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如果已经安装有旧版本的docker，先进行删除："><span class="nav-number">2.0.3.</span> <span class="nav-text">如果已经安装有旧版本的docker，先进行删除：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为了使apt可以通过https使用Repository，先安装以下包"><span class="nav-number">2.0.4.</span> <span class="nav-text">为了使apt可以通过https使用Repository，先安装以下包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加Docker官方GPG密钥"><span class="nav-number">2.0.5.</span> <span class="nav-text">添加Docker官方GPG密钥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加源信息"><span class="nav-number">2.0.6.</span> <span class="nav-text">添加源信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#再次更新下apt包索引"><span class="nav-number">2.0.7.</span> <span class="nav-text">再次更新下apt包索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装最新版的Docker-CE："><span class="nav-number">2.0.8.</span> <span class="nav-text">安装最新版的Docker CE：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02-常用命令介绍"><span class="nav-number">3.</span> <span class="nav-text">0x02 常用命令介绍</span></a></li></div>
             
 
           </div>

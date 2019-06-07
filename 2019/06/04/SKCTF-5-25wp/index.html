@@ -128,7 +128,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190605212235.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190607174115.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190607175039.png">
-<meta property="og:updated_time" content="2019-06-07T09:58:16.788Z">
+<meta property="og:updated_time" content="2019-06-07T10:09:57.071Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SKCTF-5-25wp">
 <meta name="twitter:description" content="快乐校赛">
@@ -421,7 +421,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-06-07 17:58:16" itemprop="dateModified" datetime="2019-06-07T17:58:16+08:00">2019-06-07</time>
+                <time title="修改时间：2019-06-07 18:09:57" itemprop="dateModified" datetime="2019-06-07T18:09:57+08:00">2019-06-07</time>
               
             
           </span>
@@ -557,7 +557,15 @@ im.show() # 展示图片
 <pre><code>synt{DeP0qr_vF_va7rEfg1at-}
 </code></pre><p>凯撒解密得flag。</p>
 <pre><code>flag{QrC0de_iS_in7eRst1ng-}
-</code></pre>
+</code></pre><h4 id="注"><a href="#注" class="headerlink" title="注"></a>注</h4><p>bugku上有类似题目。。</p>
+<p><a href="http://n4tsu.top/2019/05/12/%E4%B8%80%E4%BA%9Bbugku%E7%9A%84%E9%A2%98%E7%9B%AEwp/#more">bugku部分wp</a></p>
+<h3 id="unzip"><a href="#unzip" class="headerlink" title="unzip"></a>unzip</h3><p>这道题之前的组内赛放过一次，印象也是挺深。暂时没有题目文件，就凭印象写了。</p>
+<p>又<strong>mkfile.sh中的time()</strong>得知这道题考察的是时间戳</p>
+<blockquote>
+<p>时间戳是指格林威治时间1970年01月01日00时00分00秒(北京时间1970年01月01日08时00分00秒)起至现在的总秒数。通俗的讲， 时间戳是一份能够表示一份数据在一个特定时间点已经存在的完整的可验证的数据。 它的提出主要是为用户提供一份电子证据， 以证明用户的某些数据的产生时间。 在实际应用上， 它可以使用在包括电子商务、 金融活动的各个方面， 尤其可以用来支撑公开密钥基础设施的 “不可否认” 服务。</p>
+</blockquote>
+<p>看了看一些小伙伴们的wp，发现都是暴力破解的压缩包，其实并不需要。<br>既然是考察时间戳，结合题目，<strong>把拿到的压缩包的创建时间转换为时间戳即为压缩包密码</strong>，解压即可。</p>
+
       
     </div>
 
@@ -805,7 +813,7 @@ im.show() # 展示图片
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB"><span class="nav-number">1.</span> <span class="nav-text">WEB</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一个不能按的按钮"><span class="nav-number">1.0.1.</span> <span class="nav-text">一个不能按的按钮</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#附"><span class="nav-number">1.0.1.1.</span> <span class="nav-text">附</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#学生信息查询"><span class="nav-number">1.0.2.</span> <span class="nav-text">学生信息查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#I-am-looking-at-you"><span class="nav-number">1.0.3.</span> <span class="nav-text">I am looking at you</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#MISC"><span class="nav-number">2.</span> <span class="nav-text">MISC</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#二维码"><span class="nav-number">2.0.1.</span> <span class="nav-text">二维码</span></a></li></ol></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB"><span class="nav-number">1.</span> <span class="nav-text">WEB</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一个不能按的按钮"><span class="nav-number">1.0.1.</span> <span class="nav-text">一个不能按的按钮</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#附"><span class="nav-number">1.0.1.1.</span> <span class="nav-text">附</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#学生信息查询"><span class="nav-number">1.0.2.</span> <span class="nav-text">学生信息查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#I-am-looking-at-you"><span class="nav-number">1.0.3.</span> <span class="nav-text">I am looking at you</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#MISC"><span class="nav-number">2.</span> <span class="nav-text">MISC</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#二维码"><span class="nav-number">2.0.1.</span> <span class="nav-text">二维码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#注"><span class="nav-number">2.0.1.1.</span> <span class="nav-text">注</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#unzip"><span class="nav-number">2.0.2.</span> <span class="nav-text">unzip</span></a></li></ol></li></div>
             
 
           </div>

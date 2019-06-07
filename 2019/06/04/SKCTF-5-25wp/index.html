@@ -126,7 +126,9 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190605211114.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190605211355.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190605212235.png">
-<meta property="og:updated_time" content="2019-06-05T13:23:34.032Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190607174115.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190607175039.png">
+<meta property="og:updated_time" content="2019-06-07T09:58:16.788Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SKCTF-5-25wp">
 <meta name="twitter:description" content="快乐校赛">
@@ -419,7 +421,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-06-05 21:23:34" itemprop="dateModified" datetime="2019-06-05T21:23:34+08:00">2019-06-05</time>
+                <time title="修改时间：2019-06-07 17:58:16" itemprop="dateModified" datetime="2019-06-07T17:58:16+08:00">2019-06-07</time>
               
             
           </span>
@@ -531,7 +533,31 @@
 <p>想到可以在我们能够控制的变量myname中放入一个%s，这样经过第一次便利后data变量还是有一个%s，再经历一次sprintf函数就会将在后面的flag变量的值输出出来。所以构造payload：</p>
 <pre><code>?myname=cxk%s
 </code></pre><p>得到flag：<br><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190605212235.png" alt></p>
-
+<h1 id="MISC"><a href="#MISC" class="headerlink" title="MISC"></a>MISC</h1><h3 id="二维码"><a href="#二维码" class="headerlink" title="二维码"></a>二维码</h3><p>给了一个存着RGB值的文件，使用python的PIL库来画图。</p>
+<p><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190607174115.png" alt><br>有78400行，整数分解一下正好是280的平方。<br>所以写脚本：</p>
+<pre><code># -*- coding:utf-8 -*-
+from PIL import Image
+x = 280
+y = 280  #  长和宽均为280
+f = open(&quot;flag.txt&quot;,&apos;r&apos;) # 打开题目文件
+im = Image.new(&quot;RGB&quot;,(x,y)) # 创建一个图片
+for i in range(x):
+    for j in range(y):
+        line = f.readline().replace(&apos;(&apos;,&apos;&apos;).replace(&apos;)&apos;,&apos;&apos;)
+        pixel = line.split(&apos;,&apos;)
+        im.putpixel((i,j),(int(pixel[0]),int(pixel[1]),int(pixel[2]))) # 往图片的每个坐标点上填充像素
+f.close()
+im.show() # 展示图片
+</code></pre><p>得到一个二维码：<br><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190607175039.png" alt></p>
+<p>扫描得到</p>
+<pre><code>ONYXE6LSIVXF6ZTUOZTXWRRRIRPWCZLWORIGCLJQG56Q====
+</code></pre><p>看出为base32密码，解码得</p>
+<pre><code>sqryrEn_ftvg{F1D_aevtPa-07}
+</code></pre><p>栅栏解密得</p>
+<pre><code>synt{DeP0qr_vF_va7rEfg1at-}
+</code></pre><p>凯撒解密得flag。</p>
+<pre><code>flag{QrC0de_iS_in7eRst1ng-}
+</code></pre>
       
     </div>
 
@@ -779,7 +805,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB"><span class="nav-number">1.</span> <span class="nav-text">WEB</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一个不能按的按钮"><span class="nav-number">1.0.1.</span> <span class="nav-text">一个不能按的按钮</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#附"><span class="nav-number">1.0.1.1.</span> <span class="nav-text">附</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#学生信息查询"><span class="nav-number">1.0.2.</span> <span class="nav-text">学生信息查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#I-am-looking-at-you"><span class="nav-number">1.0.3.</span> <span class="nav-text">I am looking at you</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB"><span class="nav-number">1.</span> <span class="nav-text">WEB</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一个不能按的按钮"><span class="nav-number">1.0.1.</span> <span class="nav-text">一个不能按的按钮</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#附"><span class="nav-number">1.0.1.1.</span> <span class="nav-text">附</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#学生信息查询"><span class="nav-number">1.0.2.</span> <span class="nav-text">学生信息查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#I-am-looking-at-you"><span class="nav-number">1.0.3.</span> <span class="nav-text">I am looking at you</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#MISC"><span class="nav-number">2.</span> <span class="nav-text">MISC</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#二维码"><span class="nav-number">2.0.1.</span> <span class="nav-text">二维码</span></a></li></ol></li></div>
             
 
           </div>

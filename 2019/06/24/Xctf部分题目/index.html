@@ -123,7 +123,14 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190624202127.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190624202246.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190624202436.png">
-<meta property="og:updated_time" content="2019-06-24T12:29:15.914Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190925204814.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190925204921.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190925205158.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190925205827.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190925210125.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190925211156.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190925211447.png">
+<meta property="og:updated_time" content="2019-09-25T13:19:39.777Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Xctf部分题目">
 <meta name="twitter:description" content="XCTF">
@@ -399,12 +406,24 @@
                 
               
 
-              <time title="创建时间：2019-06-24 19:31:13 / 修改时间：20:29:15" itemprop="dateCreated datePublished" datetime="2019-06-24T19:31:13+08:00">2019-06-24</time>
+              <time title="创建时间：2019-06-24 19:31:13" itemprop="dateCreated datePublished" datetime="2019-06-24T19:31:13+08:00">2019-06-24</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-09-25 21:19:39" itemprop="dateModified" datetime="2019-09-25T21:19:39+08:00">2019-09-25</time>
               
             
           </span>
@@ -441,7 +460,7 @@
         <p>XCTF</p>
 <a id="more"></a>
 <h1 id="题目来源"><a href="#题目来源" class="headerlink" title="题目来源"></a>题目来源</h1><p><a href="https://adworld.xctf.org.cn/task" target="_blank" rel="noopener">https://adworld.xctf.org.cn/task</a></p>
-<h1 id="WEB"><a href="#WEB" class="headerlink" title="WEB"></a>WEB</h1><h3 id="backup"><a href="#backup" class="headerlink" title="backup"></a>backup</h3><p><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190624193720.png" alt></p>
+<h1 id="WEB"><a href="#WEB" class="headerlink" title="WEB"></a>WEB</h1><h2 id="新手题"><a href="#新手题" class="headerlink" title="新手题"></a>新手题</h2><h3 id="backup"><a href="#backup" class="headerlink" title="backup"></a>backup</h3><p><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190624193720.png" alt></p>
 <p>这道题目<a href="http://111.198.29.45:41660/index.php.bak即可拿到flag。" target="_blank" rel="noopener">http://111.198.29.45:41660/index.php.bak即可拿到flag。</a></p>
 <p>题目并不难，记录一下常见的备份文件/源码泄露。</p>
 <pre><code>分布式版本控制系统(git)源码泄漏
@@ -541,6 +560,21 @@ for i in s:
 <p>命令注入,遍历目录发现在home目录下有个flag.txt,cat读取拿到flag.<br><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190624202246.png" alt></p>
 <h3 id="simple-php"><a href="#simple-php" class="headerlink" title="simple_php"></a>simple_php</h3><p><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190624202436.png" alt></p>
 <p>如图,弱类型比较及强制类型转换绕过.</p>
+<h2 id="进阶题"><a href="#进阶题" class="headerlink" title="进阶题"></a>进阶题</h2><h3 id="cat"><a href="#cat" class="headerlink" title="cat"></a>cat</h3><p><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190925204814.png" alt></p>
+<p><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190925204921.png" alt></p>
+<p>想到可能是命令执行，但是经过测试发现了过滤了&amp;,|等字符，输入如<a href="http://www.baidu.com这样的url也会回显Invalid" target="_blank" rel="noopener">www.baidu.com这样的url也会回显Invalid</a> URL，只有@字符没有被过滤。</p>
+<p>在URL中输入超出ascii码范围的宽字符%df</p>
+<p><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190925205158.png" alt></p>
+<p>回显出一大段html代码，保存下来打开发现是个django的报错界面</p>
+<p><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190925205827.png" alt></p>
+<p>找到项目的绝对路径<img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190925210125.png" alt><br>/opt/api</p>
+<p>这里可以用到PHP的CURL，使用@作为前缀并加上文件的完整路径可以直接读取文件内容。</p>
+<p>结合django开发的知识(dalao们脑洞是真的大),可以查看settings.py——项目的默认配置文件</p>
+<p>PS：settings.py生成时会生成在主项目下以项目名称命名的文件夹下。</p>
+<p>所以</p>
+<pre><code>/index.php?url=@/opt/api/api/settings.py
+</code></pre><p>将得到的html保存下来打开可以找到数据库信息<br><img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190925211156.png" alt></p>
+<p>按上面的方法继续访问数据库文件，html保存下来打开，可以找到flag。<img src="https://raw.githubusercontent.com/Snatsu/figurebed/master/img/20190925211447.png" alt></p>
 
       
     </div>
@@ -797,7 +831,7 @@ for i in s:
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题目来源"><span class="nav-number">1.</span> <span class="nav-text">题目来源</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB"><span class="nav-number">2.</span> <span class="nav-text">WEB</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#backup"><span class="nav-number">2.0.1.</span> <span class="nav-text">backup</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#simple-js"><span class="nav-number">2.0.2.</span> <span class="nav-text">simple js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#weak-auth"><span class="nav-number">2.0.3.</span> <span class="nav-text">weak auth</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#webshell"><span class="nav-number">2.0.4.</span> <span class="nav-text">webshell</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#蚁剑"><span class="nav-number">2.0.4.1.</span> <span class="nav-text">蚁剑:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#POST"><span class="nav-number">2.0.5.</span> <span class="nav-text">POST:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#command-execution"><span class="nav-number">2.0.6.</span> <span class="nav-text">command_execution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#simple-php"><span class="nav-number">2.0.7.</span> <span class="nav-text">simple_php</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题目来源"><span class="nav-number">1.</span> <span class="nav-text">题目来源</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB"><span class="nav-number">2.</span> <span class="nav-text">WEB</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#新手题"><span class="nav-number">2.1.</span> <span class="nav-text">新手题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#backup"><span class="nav-number">2.1.1.</span> <span class="nav-text">backup</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#simple-js"><span class="nav-number">2.1.2.</span> <span class="nav-text">simple js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#weak-auth"><span class="nav-number">2.1.3.</span> <span class="nav-text">weak auth</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#webshell"><span class="nav-number">2.1.4.</span> <span class="nav-text">webshell</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#蚁剑"><span class="nav-number">2.1.4.1.</span> <span class="nav-text">蚁剑:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#POST"><span class="nav-number">2.1.5.</span> <span class="nav-text">POST:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#command-execution"><span class="nav-number">2.1.6.</span> <span class="nav-text">command_execution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#simple-php"><span class="nav-number">2.1.7.</span> <span class="nav-text">simple_php</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进阶题"><span class="nav-number">2.2.</span> <span class="nav-text">进阶题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#cat"><span class="nav-number">2.2.1.</span> <span class="nav-text">cat</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

@@ -401,7 +401,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-09-25 21:38:26" itemprop="dateModified" datetime="2019-09-25T21:38:26+08:00">2019-09-25</time>
+                <time title="修改时间：2019-09-25 21:40:18" itemprop="dateModified" datetime="2019-09-25T21:40:18+08:00">2019-09-25</time>
               
             
           </span>
@@ -436,99 +436,16 @@
 
       
         
+          <p>linux提权</p>
+          <!--noindex-->
           
-            <p>linux提权</p>
-<p>&lt;!-more–&gt;</p>
-<h1 id="Linux提权基本思路小结"><a href="#Linux提权基本思路小结" class="headerlink" title="Linux提权基本思路小结"></a>Linux提权基本思路小结</h1><p>渗透测试过程中，拿到webshell后经常会查看当前权限并进行提权。这里总结一下linux系统提权的思路。</p>
-<h3 id="0x00信息收集"><a href="#0x00信息收集" class="headerlink" title="0x00信息收集"></a>0x00信息收集</h3><p>在进行提权之前，我们需要知道目标系统的一些必要的信息:</p>
-<pre><code>uname -a 内核版本
-uname -n 系统主机名
-uname -m 系统内核架构
-cat /etc/issue  cat /etc/*-release 发行版信息
-cat /proc/version 内核信息
-
-whoami 查看当前用户
-id 当前用户详细信息
-
-cat /etc/passwd 查看所有用户
-cat /etc/group 查看所有组
-
-env 环境变量
-cat /etc/profile 默认系统变量
-cat /etc/shells 查看系统可用的shell
-</code></pre><p>根据收集到的系统内核、发行版、用户、组、权限等信息，我们可以选择具体的提权方法。</p>
-<h3 id="0x01内核漏洞提权"><a href="#0x01内核漏洞提权" class="headerlink" title="0x01内核漏洞提权"></a>0x01内核漏洞提权</h3><p>利用前提</p>
-<ul>
-<li>已经拿到低权限shell</li>
-<li>目标系统上有gcc</li>
-<li><p>有上传文件的权限</p>
-<h4 id="脏牛漏洞提权"><a href="#脏牛漏洞提权" class="headerlink" title="脏牛漏洞提权"></a>脏牛漏洞提权</h4><p>  漏洞描述：<br>  漏洞编号：CVE-2016-5195<br>  漏洞名称：脏牛（Dirty COW）<br>  漏洞危害：低权限用户利用该漏洞技术可以在全版本上实现本地提权<br>  影响范围：Linux kernel &gt;=2.6.22  并且Android也受影响</p>
-</li>
-</ul>
-<p>原理</p>
-<pre><code>Linux内核的内存子系统在处理写时拷贝（Copy-on-Write)时存在条件竞争漏洞，导致可以破坏私有只读内存映射。
-
-一个低权限的本地用户能够利用此漏洞获取其他只读内存映射的写权限，有可能进一步导致提权漏洞
-</code></pre><p>脏牛漏洞的exp利用方式与其他exp基本一致。</p>
-<h4 id="内核版本低于2-6-22"><a href="#内核版本低于2-6-22" class="headerlink" title="内核版本低于2.6.22"></a>内核版本低于2.6.22</h4><p>可以使用kali自带的searchsploit来搜索可用的针对各种linux发行版的漏洞。</p>
-<p>使用searchsploit的方法也很简单，searchsploit后面跟要搜索的内容即可。同时也可以跟上限定词来限定搜索范围。</p>
-<p>选择一个适合的exp后即可查看说明，上传到要提权的系统编译后使用。</p>
-<p>PS 若是服务器没有安装gcc就需要我们在本地编译了，需要根据需要手动调整编译的各种参数，很是复杂orz</p>
-<h3 id="0x02-明文root密码"><a href="#0x02-明文root密码" class="headerlink" title="0x02 明文root密码"></a>0x02 明文root密码</h3><p>概率十分小的一种情况…</p>
-<p>通常情况下/etc/passwd存储了系统中的用户，而/etc/shadow存储了系统中用户的密码的hash。</p>
-<p>而且/etc/passwd全用户可读，root可写;/etc/shadow只有root可读可写。</p>
-<ul>
-<li><p>shadow中存储了用户的密码hash，但是如果passwd可写，将passwd中的x改为一个已知密码的hash，那么系统在验证密码时将以passwd的为准。</p>
-</li>
-<li><p>shadow可读的情况下，可以使用john或其他来进行暴力破解hash。</p>
-</li>
-</ul>
-<p>查看这两个文件的权限:</p>
-<pre><code>ls -l /etc/passwd /etc/shadow
-</code></pre><h3 id="0x03-suid提权"><a href="#0x03-suid提权" class="headerlink" title="0x03 suid提权"></a>0x03 suid提权</h3><p>suid：</p>
-<blockquote>
-<p>SUID是一种特殊的文件属性，它允许用户执行的文件以该文件的拥有者的身份运行。比如passwd命令，就是以root权限运行来修改shadow的。<br>suid提权:<br>利用拥有suid的文件执行命令，从而提升权限至root</p>
-</blockquote>
-<p>查找suid文件：</p>
-<pre><code>find / -perm -u=s -type f 2&gt;/dev/null
-</code></pre><p>注： -type f即文件，-perm -u=s 即user权限位为suid</p>
-<p>列出来以root权限执行的文件。</p>
-<p>常见的可以用来提权的文件：    </p>
-<pre><code>Nmap
-Vim
-find
-Bash
-More
-Less
-Nano
-cp
-</code></pre><h4 id="例nmap"><a href="#例nmap" class="headerlink" title="例nmap"></a>例nmap</h4><blockquote>
-<p>较旧版本的Nmap（2.02至5.21）带有交互模式，从而允许用户执行shell命令。由于Nmap位于上面使用root权限执行的二进制文件列表中，因此可以使用交互式控制台来运行具有相同权限的shell。</p>
-</blockquote>
-<p>进入nmap交互模式:</p>
-<pre><code>nmap --interactive
-</code></pre><p>执行!sh</p>
-<pre><code>!sh
-</code></pre><p>即可返回一个shell</p>
-<h4 id="例find"><a href="#例find" class="headerlink" title="例find"></a>例find</h4><p>若find以suid运行，则通过find -exec执行的命令都会以root权限运行。</p>
-<pre><code>touch getflag
-find / -type f -name getflag -exec &quot;whoami&quot; \;
-find / -type f -name getflag -exec &quot;/bin/sh&quot; \;
-</code></pre><h3 id="0x04-计划任务"><a href="#0x04-计划任务" class="headerlink" title="0x04 计划任务"></a>0x04 计划任务</h3><p>linux系统内有一些定时执行的任务，可以通过crontab来管理。普通用户无法查看root用户的计划任务，但可以    </p>
-<pre><code>ls -l /etc/cron*
-</code></pre><p>来查看/etc内的系统任务。</p>
-<p>如果发现某脚本有着普通用户可写的权限(概率极低)，我们就可以通过修改该脚本进行提权。</p>
-<h3 id="0x05-反弹shell"><a href="#0x05-反弹shell" class="headerlink" title="0x05 反弹shell"></a>0x05 反弹shell</h3><blockquote>
-<p>某些特殊情况下(ip动态改变,防火墙限制，等等)需要让目标服务器主动连接我们，这时候就需要用到反弹shell，如果手里只有webshell可以利用反弹shell来得到一个shell。</p>
-</blockquote>
-<p>反弹shell也是有着多种利用方法，需要根据具体目标服务器的环境来选择不同的方式反弹shell。</p>
-<h3 id="0x06-总结"><a href="#0x06-总结" class="headerlink" title="0x06 总结"></a>0x06 总结</h3><ul>
-<li>加强对linux系统用户、组、各种权限的理解，能够帮助进行提权。</li>
-<li>信息收集是最开始也是最重要的一步，在开始提权前一定要先收集齐必要的信息。</li>
-<li>结合各种提权方法，必要时可以综合利用。</li>
-</ul>
-
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/09/08/linux提权思路小结/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           
+          <!--/noindex-->
         
       
     </div>

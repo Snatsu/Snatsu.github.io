@@ -100,18 +100,18 @@
 
 
 
-  <meta name="description" content="linux提权 &amp;lt;!-more–&amp;gt; Linux提权基本思路小结渗透测试过程中，拿到webshell后经常会查看当前权限并进行提权。这里总结一下linux系统提权的思路。 0x00信息收集在进行提权之前，我们需要知道目标系统的一些必要的信息: uname -a 内核版本 uname -n 系统主机名 uname -m 系统内核架构 cat /etc/issue  cat /etc/*-r">
+  <meta name="description" content="linux提权">
 <meta name="keywords" content="ctf">
 <meta property="og:type" content="article">
 <meta property="og:title" content="linux提权思路小结">
 <meta property="og:url" content="http://n4tsu.top/2019/09/08/linux提权思路小结/index.html">
 <meta property="og:site_name" content="Natsu">
-<meta property="og:description" content="linux提权 &amp;lt;!-more–&amp;gt; Linux提权基本思路小结渗透测试过程中，拿到webshell后经常会查看当前权限并进行提权。这里总结一下linux系统提权的思路。 0x00信息收集在进行提权之前，我们需要知道目标系统的一些必要的信息: uname -a 内核版本 uname -n 系统主机名 uname -m 系统内核架构 cat /etc/issue  cat /etc/*-r">
+<meta property="og:description" content="linux提权">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-25T13:38:26.488Z">
+<meta property="og:updated_time" content="2019-09-25T13:40:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux提权思路小结">
-<meta name="twitter:description" content="linux提权 &amp;lt;!-more–&amp;gt; Linux提权基本思路小结渗透测试过程中，拿到webshell后经常会查看当前权限并进行提权。这里总结一下linux系统提权的思路。 0x00信息收集在进行提权之前，我们需要知道目标系统的一些必要的信息: uname -a 内核版本 uname -n 系统主机名 uname -m 系统内核架构 cat /etc/issue  cat /etc/*-r">
+<meta name="twitter:description" content="linux提权">
 
 
 
@@ -400,7 +400,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-09-25 21:38:26" itemprop="dateModified" datetime="2019-09-25T21:38:26+08:00">2019-09-25</time>
+                <time title="修改时间：2019-09-25 21:40:18" itemprop="dateModified" datetime="2019-09-25T21:40:18+08:00">2019-09-25</time>
               
             
           </span>
@@ -435,7 +435,7 @@
 
       
         <p>linux提权</p>
-<p>&lt;!-more–&gt;</p>
+<a id="more"></a>
 <h1 id="Linux提权基本思路小结"><a href="#Linux提权基本思路小结" class="headerlink" title="Linux提权基本思路小结"></a>Linux提权基本思路小结</h1><p>渗透测试过程中，拿到webshell后经常会查看当前权限并进行提权。这里总结一下linux系统提权的思路。</p>
 <h3 id="0x00信息收集"><a href="#0x00信息收集" class="headerlink" title="0x00信息收集"></a>0x00信息收集</h3><p>在进行提权之前，我们需要知道目标系统的一些必要的信息:</p>
 <pre><code>uname -a 内核版本
